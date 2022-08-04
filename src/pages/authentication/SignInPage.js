@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, InputField } from "../../component/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,15 +58,15 @@ const languageData = {
             placeholder: "Vui lòng nhập email",
             error: {
                 invalid: "Email không hợp lệ",
-                required: "Email là trường bắt buột",
+                required: "Email là không được bỏ trống ",
             },
         },
         passwordField: {
             label: "Mật khẩu",
             placeholder: "Vui lòng nhập mật khẩu",
             error: {
-                invalid: "Mật khẩu không hợp lệ",
-                required:
+                required: "Mật khẩu không hợp lệ",
+                invalid:
                     "Mật khẩu hợp lệ bao gồm 8 kí tự, có một kí tự viết hoa, một kí tự viết thường, một số, một kí tự đặc biệt ",
             },
         },
@@ -86,7 +86,7 @@ const SignInPage = () => {
         if (userInfo) {
             navigate("/");
         }
-    }, []);
+    }, [lang.formTitle]);
     const handleSubmit = async (values, action) => {
         await toast.promise(
             signInWithEmailAndPassword(auth, values.email, values.password),

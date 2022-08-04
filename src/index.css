@@ -32,6 +32,15 @@ a {
     text-decoration: none;
 }
 
+/* Code for Firefox */
+::-moz-selection {
+    background: #a7f2d4;
+}
+
+::selection {
+    background: #a7f2d4;
+}
+
 .content-overflow-limitline {
     --line: 7;
     overflow: hidden;

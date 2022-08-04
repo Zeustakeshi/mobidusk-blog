@@ -20,7 +20,7 @@ const headerTags = [
 
 const HeaderManager = () => {
     return (
-        <header className="fixed z-10 left-0 top-0 w-full bg-white py-5 px-20 shadow-style-3">
+        <header className="fixed z-50 left-0 top-0 w-full bg-white py-5 px-20 shadow-style-3">
             <div className="flex justify-between items-center page-container">
                 <div className="flex justify-center items-center gap-5 ">
                     <Logo size={60}></Logo>

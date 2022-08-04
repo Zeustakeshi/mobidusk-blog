@@ -37,7 +37,7 @@ const ManagerLayout = ({ children }) => {
     }, [userInfo]);
 
     return (
-        <div className="page-container relative pt-[150px]">
+        <div className="page-container relative pt-[150px] ">
             <HeaderManager />
             <div className="flex">
                 <div className="relative  pl-[350px] w-full h-full">

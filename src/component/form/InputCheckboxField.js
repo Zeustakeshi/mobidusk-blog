@@ -27,7 +27,7 @@ const InputCheckboxField = ({
             >
                 {({ field }) => {
                     return (
-                        <div className="flex-1 flex items-center justify-center">
+                        <div className=" flex items-center justify-center">
                             {type === "primary" ? (
                                 <ToggleButton
                                     {...field}
@@ -43,7 +43,7 @@ const InputCheckboxField = ({
                                         borderColor: colorActive || "#2EBAC1",
                                         borderRadius: size / 10,
                                     }}
-                                    className={` group inline-block cursor-pointer w-full h-full relative border-[2px] bg-slate-50 overflow-hidden`}
+                                    className={` group inline-block cursor-pointer w-full h-full relative border-[2px] overflow-hidden`}
                                 >
                                     <input
                                         type="checkbox"
@@ -61,7 +61,7 @@ const InputCheckboxField = ({
                                             field.checked
                                                 ? `inline-block `
                                                 : "hidden"
-                                        } transition-all  flex justify-center items-center absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-full h-full text-white text-sm `}
+                                        } z-[8] transition-all  flex justify-center items-center absolute top-[50%] left-[50%]  -translate-x-2/4 -translate-y-2/4 w-full h-full text-white text-sm `}
                                     >
                                         ✔
                                     </span>
