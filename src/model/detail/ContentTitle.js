@@ -1,6 +1,6 @@
 const ContentTitle = ({ children, className = "" }) => {
     return (
-        <h3 className={`my-[25px] font-semibold text-xl ${className}`}>
+        <h3 className={`my-[25px] font-semibold text-3xl ${className}`}>
             {children}
         </h3>
     );

@@ -80,12 +80,9 @@ const SignUpPage = () => {
                         ),
                 })}
                 footer={
-                    <div className="mt-4 text-slate-500 text-sm font-semibold">
+                    <div className="mt-4 text-slate-500 text-base font-semibold">
                         You are a member?{" "}
-                        <NavLink
-                            to="/sign-in"
-                            className="text-base text-primary"
-                        >
+                        <NavLink to="/sign-in" className="text-lg text-primary">
                             Login Now
                         </NavLink>
                     </div>

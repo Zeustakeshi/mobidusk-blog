@@ -7,7 +7,7 @@ const PostTitle = ({ className = "", children, limitLine = 4, to = "/" }) => {
             style={{
                 ["--line"]: limitLine,
             }}
-            className={`${className} content-overflow-limitline`}
+            className={`${className} content-overflow-limitline leading-relaxed`}
         >
             <NavLink to={to} className="block">
                 {children}

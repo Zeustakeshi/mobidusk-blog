@@ -1,6 +1,10 @@
 import React from "react";
 
-const PostMeta = ({ time, authorName, className = "text-xs font-medium " }) => {
+const PostMeta = ({
+    time,
+    authorName,
+    className = "text-base font-medium ",
+}) => {
     return (
         <div
             className={` text-[#6B6B6B] flex justify-center items-center gap-2 ${className}`}

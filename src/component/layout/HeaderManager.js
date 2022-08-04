@@ -47,7 +47,7 @@ const HeaderManager = () => {
 
                 <Button
                     type="button"
-                    className="max-w-[180px] text-base h-[60px]"
+                    className="max-w-[180px] text-xl h-[60px]"
                     // to="/sign-up"
                 >
                     New post

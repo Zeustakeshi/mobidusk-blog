@@ -12,16 +12,16 @@ const PostFeatureItem = ({ data }) => {
                 alt=""
                 className="rounded-[inherit] object-cover w-full h-full"
             />
-            <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-start items-start p-4 gap-3  bg-slate-400 bg-opacity-20">
+            <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-start items-start p-5 gap-3  bg-slate-400 bg-opacity-20">
                 <div className="flex justify-between items-center w-full">
                     <PostCategory>{data.tag}</PostCategory>
                     <PostMeta
                         time={data.time}
                         authorName={data.author}
-                        className="text-[#F8F9FA] text-xs font-semibold"
+                        className="text-[#F8F9FA] text-base font-semibold"
                     />
                 </div>
-                <PostTitle className="font-semibold text-base">
+                <PostTitle className="font-semibold text-xl">
                     {data.title}
                 </PostTitle>
             </div>

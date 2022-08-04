@@ -9,7 +9,7 @@ const SideBar = ({ navigates, children }) => {
                     <li key={item.title} className="w-full rounded-xl">
                         <NavLink
                             className={({ isActive }) =>
-                                ` rounded-[inherit] w-full h-full px-5 py-4 hover:text-secondary hover:bg-[#F1FBF7] flex justify-start items-center gap-5 font-semibold text-sm transition-all ${
+                                ` rounded-[inherit] w-full h-full px-5 py-4 hover:text-secondary hover:bg-[#F1FBF7] flex justify-start items-center gap-5 font-semibold transition-all ${
                                     isActive
                                         ? "text-secondary bg-[#F1FBF7]"
                                         : "text-[#808191]"

@@ -8,7 +8,7 @@ const PostCategory = ({
     to = "/",
 }) => {
     return (
-        <div className={`text-xs font-semibold mb-[10px] ${className} `}>
+        <div className={`text-sm font-semibold mb-[10px] ${className} `}>
             <NavLink
                 to={to}
                 className={`block px-[10px] py-[4px] rounded-[12px] text-gray6B ${

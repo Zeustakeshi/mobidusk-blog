@@ -46,7 +46,7 @@ const ManagerLayout = ({ children }) => {
                 <SideBar navigates={sideBarNavigates}>
                     <ul className="py-4">
                         <li
-                            className="text-[#808191] rounded-lg w-full h-full px-5 py-4 hover:bg-[#F1FBF7] hover:text-secondary flex justify-start items-center gap-5 font-semibold text-sm cursor-pointer transition-all"
+                            className="text-[#808191] rounded-lg w-full h-full px-5 py-4 hover:bg-[#F1FBF7] hover:text-secondary flex justify-start items-center gap-5 font-semibold cursor-pointer transition-all"
                             onClick={() => {
                                 signOut(auth);
                             }}

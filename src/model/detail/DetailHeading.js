@@ -13,10 +13,10 @@ const DetailHeading = () => {
                     alt=""
                 />
             </div>
-            <div className="flex flex-col justify-center items-start gap-[30px]">
-                <PostCategory>Kiến thức</PostCategory>
+            <div className="flex flex-col justify-center items-start ">
+                <PostCategory className="mb-[10px]">Kiến thức</PostCategory>
                 <PostTitle
-                    className="text-secondary font-semibold text-4xl"
+                    className="text-secondary font-semibold text-4xl mb-[20px]"
                     limitLine={6}
                 >
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập

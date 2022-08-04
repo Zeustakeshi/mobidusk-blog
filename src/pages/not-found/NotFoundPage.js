@@ -13,16 +13,16 @@ const NotFoundPage = () => {
                 </div>
                 <div className="flex-1 flex flex-col gap-8 justify-center items-center">
                     <div className="text-6xl text-primary font-bold">Oops!</div>
-                    <p className="p-0 m-0 uppercase font-semibold">
+                    <p className="p-0 m-0 uppercase font-bold">
                         Page not found in server
                     </p>
-                    <p className="text-center text-sm text-slate-400">
+                    <p className="text-center text-base font-semibold text-slate-400">
                         This link your followed is either outdated, inaccurate,
                         or the server has been instructed not to let you have it
                     </p>
                     <Button
                         type="button"
-                        className="max-w-[200px] text-base"
+                        className="max-w-[200px] text-lg font-bold"
                         to="/"
                     >
                         Go to Home

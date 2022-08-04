@@ -16,11 +16,15 @@ const PostItem = () => {
                 />
             </div>
             <div className="flex flex-col gap-3 items-start justify-center">
-                <PostCategory className="mb-0">Kiến thức</PostCategory>
-                <PostTitle limitLine={3} className="font-semibold text-base">
+                <PostCategory className="mb-[0px]">Kiến thức</PostCategory>
+                <PostTitle limitLine={3} className="font-semibold text-lg">
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
                 </PostTitle>
-                <PostMeta authorName="Andiez Le" time="Mar 23" />
+                <PostMeta
+                    authorName="Andiez Le"
+                    time="Mar 23"
+                    className="text-sm font-semibold"
+                />
             </div>
         </div>
     );

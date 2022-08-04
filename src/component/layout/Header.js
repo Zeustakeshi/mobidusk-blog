@@ -38,7 +38,7 @@ const Header = () => {
                                 <NavLink
                                     to={item.url}
                                     className={({ isActive }) =>
-                                        `block p-3 ${
+                                        ` block p-3 ${
                                             isActive ? "text-primary" : ""
                                         }`
                                     }
@@ -55,14 +55,14 @@ const Header = () => {
                         type="text"
                         placeholder="Search posts..."
                         className="max-w-[300px] h-[60px]"
-                        inputClassName=" placeholder: text-base px-5 py-3"
+                        inputClassName=" placeholder: text-lg px-5 py-3"
                     >
                         <IconSearch />
                     </Input>
                     {!userInfo ? (
                         <Button
                             type="button"
-                            className="max-w-[180px] text-base h-[60px]"
+                            className="max-w-[180px] text-lg h-[60px]"
                             to="/sign-up"
                         >
                             Sign Up

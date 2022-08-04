@@ -40,12 +40,12 @@ const ManagerPostTable = () => {
                                     </div>
                                     <div className=" flex flex-col justify-start items-start max-w-[300px]">
                                         <h4
-                                            className="content-overflow-limitline font-semibold text-lg"
+                                            className="content-overflow-limitline font-semibold text-xl"
                                             style={{ ["--line"]: 1 }}
                                         >
                                             Hello My Car!!!
                                         </h4>
-                                        <div className="flex justify-center items-center gap-1 text-gray-600 text-sm font-medium">
+                                        <div className="flex justify-center items-center gap-1 text-gray-600 text-base font-medium">
                                             <span>Date:</span>
                                             <span>25 Otc 2021</span>
                                         </div>
@@ -53,12 +53,12 @@ const ManagerPostTable = () => {
                                 </div>
                             </td>
                             <td className="max-w-[100px] ">
-                                <div className="content-overflow-one-line p-3 text-base text-left text-gray-500 font-medium">
+                                <div className="content-overflow-one-line p-3 text-left text-gray-500 font-medium">
                                     Car
                                 </div>
                             </td>
                             <td className="max-w-[200px]">
-                                <div className="content-overflow-one-line p-3 text-base text-gray-500 font-medium">
+                                <div className="content-overflow-one-line p-3 text-gray-500 font-medium">
                                     Minh Hieu
                                 </div>
                             </td>

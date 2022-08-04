@@ -9,7 +9,7 @@ const HeadingTitle = ({
 }) => {
     return (
         <div
-            className={`mb-[15px] py-3 relative text-2xl font-semibold  ${className}`}
+            className={`mb-[15px] py-2 relative text-[28px] font-semibold  ${className}`}
         >
             <span
                 className={`absolute bg-[#00D1ED] top-0 left-0 ${decorationClassName}`}

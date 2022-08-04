@@ -16,12 +16,19 @@ const PostNewstLarge = () => {
             </div>
             <div className="flex flex-col justify-start items-start mt-[30px] py-3">
                 <PostCategory>Kiến thức</PostCategory>
-                <PostTitle className="font-semibold text-xl mb-3" limitLine={2}>
+                <PostTitle
+                    className="font-semibold text-2xl mb-3"
+                    limitLine={2}
+                >
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
                 </PostTitle>
-                <PostMeta time="Mar 23" authorName="Andiez Le" />
+                <PostMeta
+                    time="Mar 23"
+                    authorName="Andiez Le"
+                    className="font-medium text-base"
+                />
             </div>
         </div>
     );

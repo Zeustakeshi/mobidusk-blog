@@ -64,7 +64,7 @@ const InputField = ({
                     </span>
                 )}
             </div>
-            <div className="ml-2 text-red-500 text-xs font-semibold">
+            <div className="ml-2 text-red-500 text-sm font-semibold">
                 <ErrorMessage name={name}></ErrorMessage>
             </div>
         </div>

@@ -22,12 +22,12 @@ const PostNewestItem = () => {
                         />
                     </div>
                     <div className="flex flex-col gap-3 justify-start items-start">
-                        <PostCategory type="secondary" className="mb-0">
+                        <PostCategory type="secondary" className="mb-[0px]">
                             Kiến thức
                         </PostCategory>
                         <PostTitle
                             limitLine={2}
-                            className="text-base font-semibold text-[#232323]"
+                            className="text-lg font-semibold text-[#232323] "
                         >
                             Hướng dẫn setup phòng cực chill dành cho người mới
                             toàn tập
@@ -35,7 +35,7 @@ const PostNewestItem = () => {
                         <PostMeta
                             time="Mar 23"
                             authorName="Andiez Le"
-                            className="text-gray6B text-xs font-semibold"
+                            className="text-gray6B text-sm font-semibold"
                         ></PostMeta>
                     </div>
                 </div>
