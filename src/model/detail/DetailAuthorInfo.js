@@ -19,7 +19,7 @@ const DetailAuthorInfo = () => {
                     style={{
                         ["--line"]: 4,
                     }}
-                    className="content-overflow-limitline mb-0 text-base"
+                    className="content-overflow-limitline mb-0 text-base !leading-relaxed "
                 >
                     Gastronomy atmosphere set aside. Slice butternut cooking
                     home.Gastronomy atmosphere set aside. Slice butternut

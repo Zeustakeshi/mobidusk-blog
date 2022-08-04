@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/authContext";
 import SignInPage from "./pages/authentication/SignInPage";
 import SignUpPage from "./pages/authentication/SignUpPage";
 import HomePage from "./pages/Home/HomePage";
-import ManagerCateloryPage from "./pages/ManagerPage/catelory/ManagerCateloryPage";
+import ManagerAddPostPage from "./pages/ManagerPage/addPost/ManagerAddPostPage";
 import ManagerDashboardPage from "./pages/ManagerPage/dashboard/ManagerDashboardPage";
 import ManagerPostPage from "./pages/ManagerPage/post/ManagerPostPage";
 import ManagerUserPage from "./pages/ManagerPage/user/ManagerUserPage";
@@ -23,8 +23,8 @@ function App() {
                     <Route path="/manager/post" element={<ManagerPostPage />} />
                     <Route path="/manager/user" element={<ManagerUserPage />} />
                     <Route
-                        path="/manager/catelory"
-                        element={<ManagerCateloryPage />}
+                        path="/manager/post/add-post"
+                        element={<ManagerAddPostPage />}
                     />
                     <Route
                         path="/manager/dashboard"

@@ -1,11 +1,12 @@
 import React from "react";
+import Button from "../../../component/Button";
 import DropDown from "../../../component/dropdown/Dropdown";
 import { Form, InputCheckboxField } from "../../../component/form";
 import ManagerLayout from "../../../component/layout/ManagerLayout";
 
 const ManagerDashboardPage = () => {
     return (
-        <ManagerLayout>
+        <ManagerLayout title="Dashboard">
             <div className="w-full h-full flex justify-start p-10 items-center">
                 <Form
                     initialValues={{

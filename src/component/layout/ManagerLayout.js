@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { IconDashBoard, IconLogOut, IconPosts, IconProfile } from "../icons";
-
 import SideBar from "./SideBar";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-app/firebase-config";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-import HeaderManager from "./HeaderManager";
+import PropTypes from "prop-types";
+import Header from "./Header";
+
 const sideBarNavigates = [
     {
         title: "Dashboard",
@@ -25,7 +26,22 @@ const sideBarNavigates = [
     },
 ];
 
-const ManagerLayout = ({ children }) => {
+const headerTags = [
+    {
+        title: "Home",
+        url: "/",
+    },
+    {
+        title: "Blog",
+        url: "/blog",
+    },
+    {
+        title: "Contact",
+        url: "/contact",
+    },
+];
+
+const ManagerLayout = ({ children, title, button, progress }) => {
     const { userInfo } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
@@ -37,11 +53,16 @@ const ManagerLayout = ({ children }) => {
     }, [userInfo]);
 
     return (
-        <div className="page-container relative pt-[150px] ">
-            <HeaderManager />
+        <div className="page-container relative pt-[150px]">
+            <Header headerTags={headerTags} headerRightItem={button} />
             <div className="flex">
                 <div className="relative  pl-[350px] w-full h-full">
-                    {children}
+                    <div className="pl-10 pr-4 py-3 w-full h-full">
+                        <h2 className="text-4xl font-bold text-primary mb-5">
+                            {title}
+                        </h2>
+                        {children}
+                    </div>
                 </div>
                 <SideBar navigates={sideBarNavigates}>
                     <ul className="py-4">
@@ -61,6 +82,11 @@ const ManagerLayout = ({ children }) => {
             </div>
         </div>
     );
+};
+
+ManagerLayout.propTypes = {
+    children: PropTypes.node.isRequired,
+    title: PropTypes.string.isRequired,
 };
 
 export default ManagerLayout;

@@ -14,7 +14,9 @@ const InputField = ({
     labelClassName = "",
     iconClassName = "",
     inputClassName = "",
+    errorClassName = "",
     Icon,
+
     handleClickIcon = () => {},
 }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +37,7 @@ const InputField = ({
                     hasIcon
                         ? "flex justify-start items-center border border-[#999999] focus-within:border-[#00B4AA]"
                         : ""
-                } w-full relative rounded-lg bg-slate-100 focus-within:bg-transparent ${className} transition-all`}
+                } w-full relative rounded-lg bg-green-bright bg-opacity-50 focus-within:bg-transparent ${className} transition-all`}
             >
                 <Field
                     type={showPassword ? "text" : type}
@@ -64,7 +66,9 @@ const InputField = ({
                     </span>
                 )}
             </div>
-            <div className="ml-2 text-red-500 text-sm font-semibold">
+            <div
+                className={`ml-2 text-red-500 text-sm font-semibold ${errorClassName}`}
+            >
                 <ErrorMessage name={name}></ErrorMessage>
             </div>
         </div>

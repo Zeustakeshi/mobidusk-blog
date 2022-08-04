@@ -2,7 +2,7 @@ import React from "react";
 import PreviewImage from "./PreviewImage";
 import imgUpLoad from "../../assets/image/img-upload.svg";
 import Image from "../Image";
-import { IconAdd } from "../icons";
+
 const InputImageUpLoad = ({
     name,
     id,
@@ -15,13 +15,13 @@ const InputImageUpLoad = ({
             <label
                 style={{
                     width: size.width,
-                    height: size.height,
+                    height: size.height || "auto",
                 }}
                 className={`cursor-pointer rounded-3xl flex justify-center items-center bg-slate-100 group relative ${className}`}
             >
                 <div className="w-full h-full flex justify-center items-center text-2xl text-secondary font-semibold">
-                    {formik.values.file ? (
-                        <PreviewImage file={formik.values.file} />
+                    {formik.values[name] ? (
+                        <PreviewImage file={formik.values[name]} />
                     ) : (
                         <Image
                             src={`${imgUpLoad}`}
@@ -35,26 +35,31 @@ const InputImageUpLoad = ({
                     type="file"
                     name={name}
                     id={id || name}
+                    // {...formik.getFieldProps(name)}
                     onChange={(e) => {
-                        formik.setFieldValue("file", e.target.files[0]);
+                        formik.setFieldValue(name, e.target.files[0]);
                     }}
+                    onBlur={formik.handleBlur}
                 />
-                {!formik.values.file && (
+                {!formik.values[name] && (
                     <div
-                        style={{
-                            width: size.height / 5,
-                            height: size.height / 5,
-                            fontSize: size.height / 5,
-                        }}
-                        className={` absolute w-[30%] h-[30%] flex justify-center items-center bg-primary bg-opacity-50 transition-all rounded-full text-white invisible opacity-0 group-hover:visible group-hover:opacity-100`}
+                        style={
+                            (typeof size.height === "number" && {
+                                width: size.height / 5,
+                                height: size.height / 5,
+                                fontSize: size.height / 5,
+                            }) ||
+                            {}
+                        }
+                        className={` absolute w-[80px] h-[80px] text-6xl flex justify-center items-center bg-primary bg-opacity-50 transition-all rounded-full text-white invisible opacity-0 group-hover:visible group-hover:opacity-100`}
                     >
                         +
                     </div>
                 )}
             </label>
-            {formik.errors.file && (
-                <div className="mt-2 text-base text-red-500  font-semibold text-center">
-                    {formik.errors.file}
+            {formik.errors[name] && formik.touched[name] && (
+                <div className="mt-3 text-base text-red-500  font-semibold text-center">
+                    {formik.errors[name]}
                 </div>
             )}
         </div>

@@ -4,7 +4,7 @@ import { IconChevron } from "../icons";
 
 const DropDown = ({
     initItem,
-    handleChooseItem,
+    handleChooseItem = () => {},
     items,
     className = "",
     itemClassName = "",
