@@ -1,6 +1,6 @@
 import React from "react";
 import PreviewImage from "./PreviewImage";
-import imgUpLoad from "../../assets/image/img-upload.svg";
+import imgUpLoad from "../../assets/image/img-upload.png";
 import Image from "../Image";
 
 const InputImageUpLoad = ({
@@ -17,17 +17,19 @@ const InputImageUpLoad = ({
                     width: size.width,
                     height: size.height || "auto",
                 }}
-                className={`cursor-pointer rounded-3xl flex justify-center items-center bg-slate-100 group relative ${className}`}
+                className={`cursor-pointer rounded-3xl flex justify-center items-center bg-green-bright group relative ${className}`}
             >
-                <div className="w-full h-full flex justify-center items-center text-2xl text-secondary font-semibold">
+                <div className="w-full h-full flex justify-center items-center text-2xl text-secondary font-semibold rounded-[inherit]">
                     {formik.values[name] ? (
                         <PreviewImage file={formik.values[name]} />
                     ) : (
-                        <Image
-                            src={`${imgUpLoad}`}
-                            alt=""
-                            className="w-[80%]"
-                        />
+                        <div className="w-[40%]">
+                            <Image
+                                src={`${imgUpLoad}`}
+                                alt=""
+                                // className="w-[60%]"
+                            />
+                        </div>
                     )}
                 </div>
                 <input
@@ -35,11 +37,9 @@ const InputImageUpLoad = ({
                     type="file"
                     name={name}
                     id={id || name}
-                    // {...formik.getFieldProps(name)}
                     onChange={(e) => {
                         formik.setFieldValue(name, e.target.files[0]);
                     }}
-                    onBlur={formik.handleBlur}
                 />
                 {!formik.values[name] && (
                     <div

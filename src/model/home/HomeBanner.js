@@ -4,7 +4,7 @@ import bannerImg from "../../assets/image/banner-img.png";
 
 const HomeBanner = () => {
     return (
-        <div className="w-full bg-gradient-to-tl to-[#00A7B4] from-[#A4D96C] min-h-[500px] p-9 flex justify-between items-center ">
+        <div className="w-full bg-gradient-to-tl to-[#00A7B4] from-[#A4D96C] min-h-[500px] py-9 px-12 flex justify-between items-center rounded-lg shadow-style-3">
             <div className="flex flex-col gap-8 justify-center items-start max-w-[500px]">
                 <div className="flex flex-col gap-4 justify-center items-start text-white">
                     <p className="font-bold text-4xl">Mobidusk Blog</p>
@@ -21,7 +21,7 @@ const HomeBanner = () => {
                     Get Started
                 </Button>
             </div>
-            <div className="w-[500px] h-[500px]">
+            <div className="w-[500px] h-[500px] flex justify-center items-center">
                 <img src={bannerImg} alt="" />
             </div>
         </div>

@@ -6,7 +6,7 @@ import PostTitle from "./PostTitle";
 
 const PostNewestItem = () => {
     return (
-        <div className="p-5 bg-[#F3EDFF] rounded-2xl w-full max-w-[550px] grid grid-rows-3 gap-[40px]">
+        <div className="p-5 bg-[#F3EDFF] rounded-2xl w-full max-w-[550px] grid grid-rows-3 gap-[40px] shadow-style-3">
             {new Array(3).fill(0).map((item, index) => (
                 <div
                     key={index}

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, InputField } from "../../component/form";
+import { Form, InputCheckboxField, InputField } from "../../component/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebase-app/firebase-config";

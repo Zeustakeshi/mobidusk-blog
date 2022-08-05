@@ -16,8 +16,8 @@ const InputField = ({
     inputClassName = "",
     errorClassName = "",
     Icon,
-
     handleClickIcon = () => {},
+    ...props
 }) => {
     const [showPassword, setShowPassword] = useState(false);
     const isPassword = type === "password";
@@ -50,6 +50,7 @@ const InputField = ({
                             : "border-none  pr-2"
                     } bg-transparent transition-all placeholder:text-[#C4C4C4] ${inputClassName}`}
                     autoComplete="off"
+                    {...props}
                 />
                 {hasIcon && (
                     <span

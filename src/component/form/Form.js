@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Formik, Form as FormFormik } from "formik";
 import Button from "../Button";
 import PropTypes from "prop-types";
@@ -8,10 +8,12 @@ const Form = ({
     onSubmit = () => {},
     initialValues,
     validationSchema,
+    buttonSubmitClassName = "",
     name,
     footer,
     children,
 }) => {
+    console.log("re-render");
     return (
         <Formik
             initialValues={initialValues}
@@ -30,7 +32,7 @@ const Form = ({
                         <Button
                             isLoading={formik.isSubmitting}
                             type="submit"
-                            className="h-[70px] max-w-[350px] mt-5 "
+                            className={`h-[70px] max-w-[350px] mt-5 ${buttonSubmitClassName}`}
                         >
                             {name}
                         </Button>

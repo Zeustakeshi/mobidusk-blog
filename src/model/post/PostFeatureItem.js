@@ -6,7 +6,7 @@ import Image from "../../component/Image";
 
 const PostFeatureItem = ({ data }) => {
     return (
-        <div className="relative rounded-2xl h-[350px] overflow-hidden ">
+        <div className="relative rounded-2xl h-[350px] overflow-hidden shadow-style-2 ">
             <Image
                 src={data.ImgUrl}
                 alt=""
