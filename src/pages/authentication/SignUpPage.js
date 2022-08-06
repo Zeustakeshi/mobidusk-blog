@@ -88,19 +88,19 @@ const SignUpPage = () => {
                     </div>
                 }
             >
-                <Field.input
+                <Field.Input
                     label="Full name"
                     name="fullName"
                     type="text"
                     placeholder="Please enter your full name"
                 />
-                <Field.input
+                <Field.Input
                     label="Email address"
                     name="email"
                     type="email"
                     placeholder="Please enter your email"
                 />
-                <Field.input
+                <Field.Input
                     label="Password"
                     name="password"
                     type="password"

@@ -136,13 +136,13 @@ const SignInPage = () => {
                 }
             >
                 <>
-                    <Field.input
+                    <Field.Input
                         label={lang.emailField.label}
                         name="email"
                         type="email"
                         placeholder={lang.emailField.placeholder}
                     />
-                    <Field.input
+                    <Field.Input
                         label={lang.passwordField.label}
                         name="password"
                         type="password"
