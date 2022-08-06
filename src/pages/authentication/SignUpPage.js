@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { auth, db } from "../../firebase-app/firebase-config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { NavLink, useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import AuthenticationPage from "./AuthenticationPage";
 import * as Yup from "yup";
 import { useAuth } from "../../context/authContext";
@@ -27,8 +27,21 @@ const SignUpPage = () => {
     }, []);
     const handleSubmit = async (values, action) => {
         await toast.promise(
-            createUserWithEmailAndPassword(auth, values.email, values.password),
-
+            async () => {
+                await createUserWithEmailAndPassword(
+                    auth,
+                    values.email,
+                    values.password
+                );
+                await updateProfile(auth.currentUser, {
+                    displayName: values.fullName,
+                });
+                await setDoc(doc(db, "users", auth.currentUser.uid), {
+                    fullName: values.fullName,
+                    email: values.email,
+                    password: values.password,
+                });
+            },
             {
                 pending: "Plase Wait ...",
                 success: "Registration success!",
@@ -45,18 +58,9 @@ const SignUpPage = () => {
             }
         );
 
-        const colRef = collection(db, "users");
-        await addDoc(colRef, {
-            fullName: values.fullName,
-            email: values.email,
-            password: values.password,
-        });
-        await updateProfile(auth.currentUser, {
-            displayName: values.fullName,
-        });
-        action.setSubmitting(false);
         action.resetForm(initialFormValues);
         navigate("/");
+        action.setSubmitting(false);
     };
     return (
         <AuthenticationPage>
@@ -88,24 +92,28 @@ const SignUpPage = () => {
                     </div>
                 }
             >
-                <Field.Input
-                    label="Full name"
-                    name="fullName"
-                    type="text"
-                    placeholder="Please enter your full name"
-                />
-                <Field.Input
-                    label="Email address"
-                    name="email"
-                    type="email"
-                    placeholder="Please enter your email"
-                />
-                <Field.Input
-                    label="Password"
-                    name="password"
-                    type="password"
-                    placeholder="Please enter your password"
-                />
+                {() => (
+                    <>
+                        <Field.Input
+                            label="Full name"
+                            name="fullName"
+                            type="text"
+                            placeholder="Please enter your full name"
+                        />
+                        <Field.Input
+                            label="Email address"
+                            name="email"
+                            type="email"
+                            placeholder="Please enter your email"
+                        />
+                        <Field.Input
+                            label="Password"
+                            name="password"
+                            type="password"
+                            placeholder="Please enter your password"
+                        />
+                    </>
+                )}
             </Form>
         </AuthenticationPage>
     );

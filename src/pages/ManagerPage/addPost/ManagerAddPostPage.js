@@ -6,29 +6,40 @@ import slugify from "slugify";
 import "react-toastify/dist/ReactToastify.css";
 import useFirebaseImage from "../../../hooks/useFirebaseImage";
 import { toast } from "react-toastify";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    getDocs,
+    orderBy,
+    query,
+    Timestamp,
+} from "firebase/firestore";
 import { db } from "../../../firebase-app/firebase-config";
 import { Dropdown, DropdownField } from "../../../component/dropdown";
+import { useAuth } from "../../../context/authContext";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
     title: "",
     slug: "",
     image: "",
-    category: "kiến thức",
+    categories: ["kiến thức"],
 };
 
 const ManagerAddPostPage = () => {
     const [categories, setCategories] = useState([]);
+
     const { handleUploadImage } = useFirebaseImage();
+    const { userInfo } = useAuth();
+
     useEffect(() => {
+        document.title = "Add New Post";
         const getCategories = async () => {
             const categoriesRef = collection(db, "categories");
             const q = query(categoriesRef, orderBy("name"));
             const querySnapshot = await getDocs(q);
             const result = [];
             querySnapshot.forEach((doc) => {
-                // console.log(doc.id, " => ", doc.data());
                 result.push({
                     id: doc.id,
                     ...doc.data(),
@@ -73,69 +84,104 @@ const ManagerAddPostPage = () => {
                                 values.image
                             );
 
-                            console.log(values);
+                            await addDoc(collection(db, "posts"), {
+                                ...values,
+                                authorID: userInfo.uid,
+                                time: Timestamp.fromDate(new Date()),
+                            });
+
                             action.setSubmitting(false);
                             action.resetForm(initialFormValues);
                         },
                         {
                             pending: "Plase wait ....",
-                            success: "Add post is success",
-                            error: "Add post is fail",
+                            success: "Create post is success",
+                            error: "Create post is fail",
                         }
                     );
                 }}
                 name="Add Post"
                 className="items-center gap-10 flex flex-col w-full pb-[100px]"
+                buttonSubmitClassName="max-w-[300px] text-xl font-semibold"
             >
-                <div className="relative w-full grid grid-cols-2 gap-5">
-                    <Field.Input
-                        label="Title"
-                        name="title"
-                        placeholder="Enter your title"
-                        type="text"
-                        wrapperClassName="gap-5"
-                        errorClassName="text-base"
-                    />
-                    <Field.Input
-                        label="Slug"
-                        name="slug"
-                        placeholder="Enter your slug"
-                        type="text"
-                        wrapperClassName="gap-5"
-                        errorClassName="text-base"
-                    />
-                    <div className="flex flex-col gap-5 p-[10px] w-full">
-                        <div className="font-semibold text-[20px] text-black">
-                            Image
-                        </div>
-                        <Field.ImageUpload
-                            size={{
-                                width: "100%",
-                                height: 300,
-                            }}
-                            name="image"
+                {({ values }) => (
+                    <div className="relative w-full grid grid-cols-2 gap-5">
+                        <Field.Input
+                            label="Title"
+                            name="title"
+                            placeholder="Enter your title"
+                            type="text"
+                            wrapperClassName="gap-5"
+                            errorClassName="text-base"
                         />
-                    </div>
-                    <div className="flex flex-col gap-5 p-[10px] w-full">
-                        <div className="font-semibold text-[20px] text-black">
-                            Category
+                        <Field.Input
+                            label="Slug"
+                            name="slug"
+                            placeholder="Enter your slug"
+                            type="text"
+                            wrapperClassName="gap-5"
+                            errorClassName="text-base"
+                        />
+                        <div className="flex flex-col gap-5 p-[10px] w-full">
+                            <div className="font-semibold text-[20px] text-black">
+                                Image
+                            </div>
+                            <Field.ImageUpload
+                                size={{
+                                    width: "100%",
+                                    height: 300,
+                                }}
+                                name="image"
+                            />
                         </div>
-                        <Dropdown>
-                            <DropdownField.Label label={categories[0]?.name} />
-                            <DropdownField.Selection>
-                                {categories?.length > 0 &&
-                                    categories.map((item) => (
-                                        <DropdownField.Item
-                                            key={item.id}
-                                            value={item.name}
-                                        >
-                                            {item.name}
-                                        </DropdownField.Item>
-                                    ))}
-                            </DropdownField.Selection>
-                        </Dropdown>
+                        <div className="flex flex-col gap-5 p-[10px] w-full">
+                            <div className="font-semibold text-[20px] text-black">
+                                Category
+                            </div>
+                            <Dropdown>
+                                <DropdownField.Label label="Choose your category" />
+                                <DropdownField.Selection className="max-h-[212px]">
+                                    {categories?.length > 0 &&
+                                        categories.map((category) => (
+                                            <DropdownField.Item
+                                                key={category.id}
+                                                clickCloseDropDown={false}
+                                                clickActiveLabel={false}
+                                                className="p-0"
+                                            >
+                                                <Field.Checkbox
+                                                    name="categories"
+                                                    type="secondary"
+                                                    value={category.name}
+                                                    className="w-full p-3 gap-10"
+                                                    size={20}
+                                                >
+                                                    <div className="w-full ">
+                                                        {category.name}
+                                                    </div>
+                                                </Field.Checkbox>
+                                            </DropdownField.Item>
+                                        ))}
+                                </DropdownField.Selection>
+                            </Dropdown>
+                            <div className="grid grid-cols-3 gap-3">
+                                {values.categories &&
+                                    values.categories
+                                        .slice(0, 6)
+                                        .map((catefory) => {
+                                            return (
+                                                <span
+                                                    key={catefory}
+                                                    className="bg-green-bright text-secondary font-semibold rounded-xl p-2 text-center"
+                                                >
+                                                    {catefory}
+                                                </span>
+                                            );
+                                        })}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                )}
             </Form>
         </ManagerLayout>
     );

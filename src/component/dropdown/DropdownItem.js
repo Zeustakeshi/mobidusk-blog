@@ -1,12 +1,19 @@
 import React from "react";
 import { useDropdown } from "../../context/dropdownContext";
 
-const DropdownItem = ({ children, className, onClick, value = "" }) => {
+const DropdownItem = ({
+    children,
+    className,
+    onClick,
+    value = "",
+    clickCloseDropDown = true,
+    clickActiveLabel = true,
+}) => {
     const { setCurrentItem, setShow } = useDropdown();
     const handleClick = () => {
         onClick && onClick();
-        setCurrentItem(value);
-        setShow(false);
+        clickActiveLabel && setCurrentItem(value);
+        clickCloseDropDown && setShow(false);
     };
 
     return (

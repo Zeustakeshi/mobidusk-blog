@@ -28,7 +28,7 @@ const Form = ({
                             "max-w-[650px] w-full mx-auto flex flex-col gap-3 p-3 justify-center items-center"
                         }`}
                     >
-                        {children}
+                        {children(formik)}
                         <Button
                             isLoading={formik.isSubmitting}
                             type="submit"
@@ -46,7 +46,7 @@ const Form = ({
 
 Form.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     initialValues: PropTypes.object.isRequired,
     name: PropTypes.string.isRequired,

@@ -135,20 +135,22 @@ const SignInPage = () => {
                     </div>
                 }
             >
-                <>
-                    <Field.Input
-                        label={lang.emailField.label}
-                        name="email"
-                        type="email"
-                        placeholder={lang.emailField.placeholder}
-                    />
-                    <Field.Input
-                        label={lang.passwordField.label}
-                        name="password"
-                        type="password"
-                        placeholder={lang.passwordField.placeholder}
-                    />
-                </>
+                {() => (
+                    <>
+                        <Field.Input
+                            label={lang.emailField.label}
+                            name="email"
+                            type="email"
+                            placeholder={lang.emailField.placeholder}
+                        />
+                        <Field.Input
+                            label={lang.passwordField.label}
+                            name="password"
+                            type="password"
+                            placeholder={lang.passwordField.placeholder}
+                        />
+                    </>
+                )}
             </Form>
         </AuthenticationPage>
     );
