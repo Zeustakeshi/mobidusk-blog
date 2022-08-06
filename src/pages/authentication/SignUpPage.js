@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, InputField } from "../../component/form";
+import { Form, Field } from "../../component/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth, db } from "../../firebase-app/firebase-config";
@@ -88,28 +88,24 @@ const SignUpPage = () => {
                     </div>
                 }
             >
-                {() => (
-                    <>
-                        <InputField
-                            label="Full name"
-                            name="fullName"
-                            type="text"
-                            placeholder="Please enter your full name"
-                        />
-                        <InputField
-                            label="Email address"
-                            name="email"
-                            type="email"
-                            placeholder="Please enter your email"
-                        />
-                        <InputField
-                            label="Password"
-                            name="password"
-                            type="password"
-                            placeholder="Please enter your password"
-                        />
-                    </>
-                )}
+                <Field.input
+                    label="Full name"
+                    name="fullName"
+                    type="text"
+                    placeholder="Please enter your full name"
+                />
+                <Field.input
+                    label="Email address"
+                    name="email"
+                    type="email"
+                    placeholder="Please enter your email"
+                />
+                <Field.input
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Please enter your password"
+                />
             </Form>
         </AuthenticationPage>
     );

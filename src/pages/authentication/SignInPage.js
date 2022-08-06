@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, InputCheckboxField, InputField } from "../../component/form";
+import { Form, Field } from "../../component/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebase-app/firebase-config";
@@ -135,22 +135,20 @@ const SignInPage = () => {
                     </div>
                 }
             >
-                {() => (
-                    <>
-                        <InputField
-                            label={lang.emailField.label}
-                            name="email"
-                            type="email"
-                            placeholder={lang.emailField.placeholder}
-                        />
-                        <InputField
-                            label={lang.passwordField.label}
-                            name="password"
-                            type="password"
-                            placeholder={lang.passwordField.placeholder}
-                        />
-                    </>
-                )}
+                <>
+                    <Field.input
+                        label={lang.emailField.label}
+                        name="email"
+                        type="email"
+                        placeholder={lang.emailField.placeholder}
+                    />
+                    <Field.input
+                        label={lang.passwordField.label}
+                        name="password"
+                        type="password"
+                        placeholder={lang.passwordField.placeholder}
+                    />
+                </>
             </Form>
         </AuthenticationPage>
     );

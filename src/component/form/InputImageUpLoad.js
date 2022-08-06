@@ -2,14 +2,16 @@ import React from "react";
 import PreviewImage from "./PreviewImage";
 import imgUpLoad from "../../assets/image/img-upload.png";
 import Image from "../Image";
+import { useField } from "formik";
 
 const InputImageUpLoad = ({
     name,
     id,
-    formik,
     size = { width: 500, height: 300 },
     className = "",
 }) => {
+    const [field, meta, helpers] = useField(name);
+
     return (
         <div>
             <label
@@ -20,8 +22,8 @@ const InputImageUpLoad = ({
                 className={`cursor-pointer rounded-3xl flex justify-center items-center bg-green-bright group relative ${className}`}
             >
                 <div className="w-full h-full flex justify-center items-center text-2xl text-secondary font-semibold rounded-[inherit]">
-                    {formik.values[name] ? (
-                        <PreviewImage file={formik.values[name]} />
+                    {field.value ? (
+                        <PreviewImage file={field.value} />
                     ) : (
                         <div className="w-[40%]">
                             <Image
@@ -38,10 +40,10 @@ const InputImageUpLoad = ({
                     name={name}
                     id={id || name}
                     onChange={(e) => {
-                        formik.setFieldValue(name, e.target.files[0]);
+                        helpers.setValue(e.target.files[0]);
                     }}
                 />
-                {!formik.values[name] && (
+                {!field.value && (
                     <div
                         style={
                             (typeof size.height === "number" && {
@@ -57,9 +59,9 @@ const InputImageUpLoad = ({
                     </div>
                 )}
             </label>
-            {formik.errors[name] && formik.touched[name] && (
+            {meta.error && meta.touched && (
                 <div className="mt-3 text-base text-red-500  font-semibold text-center">
-                    {formik.errors[name]}
+                    {meta.error}
                 </div>
             )}
         </div>
