@@ -2,12 +2,20 @@ import React, { useEffect } from "react";
 import { Form, Field } from "../../component/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { auth } from "../../firebase-app/firebase-config";
+import { auth, db } from "../../firebase-app/firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthenticationPage from "./AuthenticationPage";
 import * as Yup from "yup";
 import { useAuth } from "../../context/authContext";
+import {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    where,
+} from "firebase/firestore";
 
 const initialFormValues = {
     email: "",
@@ -81,12 +89,13 @@ const SignInPage = () => {
     const lang = languageData.vi;
     const navigate = useNavigate();
     const { userInfo } = useAuth();
+    console.log(userInfo);
     useEffect(() => {
         document.title = lang.formTitle;
-        if (userInfo) {
+        if (userInfo?.uid) {
             navigate("/");
         }
-    }, [lang.formTitle]);
+    }, [lang.formTitle, userInfo]);
     const handleSubmit = async (values, action) => {
         await toast.promise(
             signInWithEmailAndPassword(auth, values.email, values.password),
@@ -105,9 +114,20 @@ const SignInPage = () => {
                 },
             }
         );
+        // const userCredential = await signInWithEmailAndPassword(
+        //     auth,
+        //     values.email,
+        //     values.password
+        // );
+        // const userRef = doc(db, "users", userCredential.user.uid);
+        // const docSnap = await getDoc(userRef);
+
+        // if (docSnap.exists() && docSnap.data().isAdmin) {
+        //     navigate("/post");
+        // }
+
         action.setSubmitting(false);
         action.resetForm(initialFormValues);
-        navigate("/");
     };
     return (
         <AuthenticationPage>

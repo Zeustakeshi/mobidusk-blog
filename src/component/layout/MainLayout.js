@@ -47,9 +47,7 @@ const MainLayout = ({ children, progress }) => {
                                 Sign Up
                             </Button>
                         ) : (
-                            <NavLink to="/manager/post">
-                                {userInfo.displayName}
-                            </NavLink>
+                            <NavLink to="/post">{userInfo.displayName}</NavLink>
                         )}
                     </>
                 }

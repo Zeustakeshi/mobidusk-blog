@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Field } from "../../../component/form";
-import ManagerLayout from "../../../component/layout/ManagerLayout";
+import ProfileLayout from "../../../component/layout/ProfileLayout";
 import * as Yup from "yup";
-import slugify from "slugify";
 import "react-toastify/dist/ReactToastify.css";
 import useFirebaseImage from "../../../hooks/useFirebaseImage";
 import { toast } from "react-toastify";
@@ -12,6 +11,7 @@ import {
     getDocs,
     orderBy,
     query,
+    serverTimestamp,
     Timestamp,
 } from "firebase/firestore";
 import { db } from "../../../firebase-app/firebase-config";
@@ -21,12 +21,12 @@ import { useAuth } from "../../../context/authContext";
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
     title: "",
-    slug: "",
     image: "",
-    categories: ["kiến thức"],
+    categories: ["kiến thức", "công nghệ"],
+    isPublic: true,
 };
 
-const ManagerAddPostPage = () => {
+const ProfileAddPostPage = () => {
     const [categories, setCategories] = useState([]);
 
     const { handleUploadImage } = useFirebaseImage();
@@ -50,14 +50,13 @@ const ManagerAddPostPage = () => {
         getCategories();
     }, []);
     return (
-        <ManagerLayout title="Add New Post">
+        <ProfileLayout title="Add New Post">
             <Form
                 initialValues={initialFormValues}
                 validationSchema={Yup.object({
                     title: Yup.string()
                         .min(10, "Title must contain 10 characters or more")
                         .required("Title is required field"),
-                    slug: Yup.string(),
                     image: Yup.mixed()
                         .nullable()
                         .required("Image file is a required field")
@@ -79,15 +78,15 @@ const ManagerAddPostPage = () => {
                 onSubmit={(values, action) => {
                     toast.promise(
                         async () => {
-                            values.slug = slugify(values.slug || values.title);
                             values.image = await handleUploadImage(
                                 values.image
                             );
 
                             await addDoc(collection(db, "posts"), {
                                 ...values,
+                                status: "pending",
                                 authorID: userInfo.uid,
-                                time: Timestamp.fromDate(new Date()),
+                                time: serverTimestamp(),
                             });
 
                             action.setSubmitting(false);
@@ -111,19 +110,13 @@ const ManagerAddPostPage = () => {
                             name="title"
                             placeholder="Enter your title"
                             type="text"
-                            wrapperClassName="gap-5"
+                            labelClassName="text-[22px] font-semibold"
+                            wrapperClassName="gap-5 col-span-2 "
                             errorClassName="text-base"
                         />
-                        <Field.Input
-                            label="Slug"
-                            name="slug"
-                            placeholder="Enter your slug"
-                            type="text"
-                            wrapperClassName="gap-5"
-                            errorClassName="text-base"
-                        />
+
                         <div className="flex flex-col gap-5 p-[10px] w-full">
-                            <div className="font-semibold text-[20px] text-black">
+                            <div className="font-semibold text-[22px] text-black">
                                 Image
                             </div>
                             <Field.ImageUpload
@@ -135,7 +128,7 @@ const ManagerAddPostPage = () => {
                             />
                         </div>
                         <div className="flex flex-col gap-5 p-[10px] w-full">
-                            <div className="font-semibold text-[20px] text-black">
+                            <div className="font-semibold text-[22px] text-black">
                                 Category
                             </div>
                             <Dropdown>
@@ -180,11 +173,21 @@ const ManagerAddPostPage = () => {
                                         })}
                             </div>
                         </div>
+                        <Field.Checkbox
+                            name="isPublic"
+                            positonCheckbox="right"
+                            size={25}
+                            className="items-center justify-center col-span-2 p-8"
+                        >
+                            <div className="font-semibold text-xl">
+                                This post will be public
+                            </div>
+                        </Field.Checkbox>
                     </div>
                 )}
             </Form>
-        </ManagerLayout>
+        </ProfileLayout>
     );
 };
 
-export default ManagerAddPostPage;
+export default ProfileAddPostPage;

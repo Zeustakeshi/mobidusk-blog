@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import MainLayout from "../../component/layout/MainLayout";
-import HomeFeature from "../../model/home/HomeFeature";
-import HomeNewestUpdate from "../../model/home/HomeNewestUpdate";
-import HomeBanner from "../../model/home/HomeBanner";
+import HomeFeature from "../../module/home/HomeFeature";
+import HomeNewestUpdate from "../../module/home/HomeNewestUpdate";
+import HomeBanner from "../../module/home/HomeBanner";
 
 const HomePage = () => {
     useEffect(() => {

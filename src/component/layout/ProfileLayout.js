@@ -12,17 +12,17 @@ const sideBarNavigates = [
     {
         title: "Dashboard",
         icon: <IconDashBoard />,
-        to: "/manager/dashboard",
+        to: "/dashboard",
     },
     {
         title: "Post",
         icon: <IconPosts />,
-        to: "/manager/post",
+        to: "/post",
     },
     {
         title: "User",
         icon: <IconProfile />,
-        to: "/manager/user",
+        to: "/user",
     },
 ];
 
@@ -41,7 +41,7 @@ const headerTags = [
     },
 ];
 
-const ManagerLayout = ({ children, title, button, progress }) => {
+const ProfileLayout = ({ children, title, button }) => {
     const { userInfo } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
@@ -84,9 +84,9 @@ const ManagerLayout = ({ children, title, button, progress }) => {
     );
 };
 
-ManagerLayout.propTypes = {
+ProfileLayout.propTypes = {
     children: PropTypes.node.isRequired,
     title: PropTypes.string.isRequired,
 };
 
-export default ManagerLayout;
+export default ProfileLayout;

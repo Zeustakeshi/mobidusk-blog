@@ -13,7 +13,7 @@ const InputRadioField = ({
 }) => {
     return (
         <label
-            className={`w-full h-full flex justify-center items-center gap-4 cursor-pointer ${className}`}
+            className={`w-full h-full flex items-center gap-4 cursor-pointer ${className}`}
         >
             {positionRadio === "right" && children}
             <Field
@@ -25,7 +25,7 @@ const InputRadioField = ({
             >
                 {({ field }) => {
                     return (
-                        <div className="flex-1 flex items-center justify-center">
+                        <div className="flex items-center justify-center">
                             <label
                                 style={{
                                     width: size,

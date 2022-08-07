@@ -1,36 +1,49 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/authContext";
-import SignInPage from "./pages/authentication/SignInPage";
-import SignUpPage from "./pages/authentication/SignUpPage";
+import SignInPage from "./pages/Authentication/SignInPage";
+import SignUpPage from "./pages/Authentication/SignUpPage";
 import HomePage from "./pages/Home/HomePage";
-import ManagerAddPostPage from "./pages/ManagerPage/addPost/ManagerAddPostPage";
-import ManagerDashboardPage from "./pages/ManagerPage/dashboard/ManagerDashboardPage";
-import ManagerPostPage from "./pages/ManagerPage/post/ManagerPostPage";
-import ManagerUserPage from "./pages/ManagerPage/user/ManagerUserPage";
-import NotFoundPage from "./pages/not-found/NotFoundPage";
+import ProfileAddPostPage from "./pages/ProfilePage/addPost/ProfileAddPostPage";
+import ProfileDashboardPage from "./pages/ProfilePage/dashboard/ProfileDashboardPage";
+import ProfilePostPage from "./pages/ProfilePage/post/ProfilePostPage";
+import ProfileUserPage from "./pages/ProfilePage/user/ProfileUserPage";
+import NotFoundPage from "./pages/Not-found/NotFoundPage";
 import PostDetailPage from "./pages/PostDetail/PostDetailPage";
+import AdminPage from "./pages/Admin/AdminPage";
+import PostManagerPage from "./pages/Admin/PostManagerPage/PostManagerPage";
 
 function App() {
     return (
         <div className="App">
             <AuthProvider>
                 <Routes>
+                    <Route element={<AdminPage />}>
+                        <Route
+                            path="admin/post"
+                            element={<PostManagerPage />}
+                        ></Route>
+                    </Route>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/blog" element={<HomePage />} />
+                    <Route path="/contact" element={<HomePage />} />
                     <Route path="/sign-up" element={<SignUpPage />} />
                     <Route path="/sign-in" element={<SignInPage />} />
-                    <Route path="/:postId" element={<PostDetailPage />} />
-                    <Route path="/manager/post" element={<ManagerPostPage />} />
-                    <Route path="/manager/user" element={<ManagerUserPage />} />
+                    <Route path="/post/:postId" element={<PostDetailPage />} />
+                    <Route path="/post" element={<ProfilePostPage />} />
                     <Route
-                        path="/manager/post/add-post"
-                        element={<ManagerAddPostPage />}
+                        element={<ProfileAddPostPage />}
+                        path="/post/add-post"
+                    />
+                    <Route path="/user" element={<ProfileUserPage />} />
+                    <Route
+                        path="/user/:userID"
+                        element={<div>Profile oder user</div>}
                     />
                     <Route
-                        path="/manager/dashboard"
-                        element={<ManagerDashboardPage />}
+                        path="/dashboard"
+                        element={<ProfileDashboardPage />}
                     />
-
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
                 <ToastContainer />

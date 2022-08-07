@@ -1,9 +1,9 @@
 import React from "react";
 import MainLayout from "../../component/layout/MainLayout";
-import DetailAuthorInfo from "../../model/detail/DetailAuthorInfo";
-import DetailContent from "../../model/detail/DetailContent";
-import DetailHeading from "../../model/detail/DetailHeading";
-import DetailPostSimilar from "../../model/detail/DetailPostSimilar";
+import DetailAuthorInfo from "../../module/detail/DetailAuthorInfo";
+import DetailContent from "../../module/detail/DetailContent";
+import DetailHeading from "../../module/detail/DetailHeading";
+import DetailPostSimilar from "../../module/detail/DetailPostSimilar";
 
 const PostDetailPage = () => {
     return (

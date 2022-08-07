@@ -1,19 +1,19 @@
 import React from "react";
 import { IconSearch } from "../../../component/icons";
-import Input from "../../../component//Input/Input";
-import ManagerLayout from "../../../component/layout/ManagerLayout";
-import ManagerPostTable from "./ManagerPostTable";
+import Input from "../../../component/Input/Input";
+import ProfileLayout from "../../../component/layout/ProfileLayout";
+import ProfilePostTable from "./ProfilePostTable";
 import Button from "../../../component/Button";
 
-const ManagerPostPage = () => {
+const ProfilePostPage = () => {
     return (
-        <ManagerLayout
+        <ProfileLayout
             title="Manage Post"
             button={
                 <Button
                     type="button"
                     className="max-w-[180px] text-xl h-[60px]"
-                    to="/manager/post/add-post"
+                    to="/post/add-post"
                 >
                     New post
                 </Button>
@@ -30,10 +30,10 @@ const ManagerPostPage = () => {
                 </Input>
             </div>
             <div className="max-h-[550px] overflow-y-scroll overflow-x-hidden custom-scrollbar p-2">
-                <ManagerPostTable></ManagerPostTable>
+                <ProfilePostTable></ProfilePostTable>
             </div>
-        </ManagerLayout>
+        </ProfileLayout>
     );
 };
 
-export default ManagerPostPage;
+export default ProfilePostPage;

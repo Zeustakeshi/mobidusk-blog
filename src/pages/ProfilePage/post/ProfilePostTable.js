@@ -6,7 +6,7 @@ import {
 } from "../../../component/icons";
 import Image from "../../../component/Image";
 
-const ManagerPostTable = () => {
+const ProfilePostTable = () => {
     return (
         <div className="max-h-[450px]">
             <table className="w-full h-full rounded-lg p-5 overflow-hidden">
@@ -14,8 +14,8 @@ const ManagerPostTable = () => {
                     <tr>
                         <th className="p-3 text-left">Id</th>
                         <th className="p-3 text-left">Post</th>
-                        <th className="p-3 text-left">Category</th>
-                        <th className="p-3 text-left">Author</th>
+                        <th className="p-3 text-left">Status</th>
+                        <th className="p-3 text-left">Public</th>
                         <th className="p-3 text-left">Action</th>
                     </tr>
                 </thead>
@@ -54,12 +54,12 @@ const ManagerPostTable = () => {
                             </td>
                             <td className="max-w-[100px] ">
                                 <div className="content-overflow-one-line p-3 text-left text-gray-500 font-medium">
-                                    Car
+                                    Pending
                                 </div>
                             </td>
                             <td className="max-w-[200px]">
                                 <div className="content-overflow-one-line p-3 text-gray-500 font-medium">
-                                    Minh Hieu
+                                    True
                                 </div>
                             </td>
                             <td className=" w-[200px]">
@@ -83,4 +83,4 @@ const ManagerPostTable = () => {
     );
 };
 
-export default ManagerPostTable;
+export default ProfilePostTable;

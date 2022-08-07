@@ -15,7 +15,7 @@ const InputCheckboxField = ({
 }) => {
     return (
         <label
-            className={`w-full h-full flex justify-center items-center gap-4 cursor-pointer ${className}`}
+            className={`w-full h-full flex gap-4 cursor-pointer ${className}`}
         >
             {positonCheckbox === "right" && children}
             <Field

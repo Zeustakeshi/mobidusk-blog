@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const PostTitle = ({ className = "", children, limitLine = 4, to = "/" }) => {
+const PostTitle = ({ className = "", children, limitLine = 4, to }) => {
     return (
         <h3
             style={{
@@ -9,7 +9,7 @@ const PostTitle = ({ className = "", children, limitLine = 4, to = "/" }) => {
             }}
             className={`${className} content-overflow-limitline leading-relaxed`}
         >
-            <NavLink to={to} className="block">
+            <NavLink to={to ? `/post/${to}` : "/"} className="block">
                 {children}
             </NavLink>
         </h3>

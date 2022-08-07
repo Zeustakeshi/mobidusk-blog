@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ToggleButton = ({
     onClick,
@@ -17,12 +17,7 @@ const ToggleButton = ({
                 background: `${isActive ? colorActive || "#2EBAC1" : ""}`,
             }}
         >
-            <input
-                type="checkbox"
-                className="hidden"
-                onClick={onClick}
-                {...props}
-            />
+            <input type="checkbox" className="hidden" {...props} />
             <div
                 style={{
                     width: size,
