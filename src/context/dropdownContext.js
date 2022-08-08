@@ -7,11 +7,7 @@ const DropdownProvider = ({ dropdownRef, ...props }) => {
     const [show, setShow] = useState(false);
     const [currentItem, setCurrentItem] = useState();
 
-    useClickOutside(dropdownRef, () => {
-        setShow(false);
-    });
-
-    const values = { show, currentItem, setShow, setCurrentItem };
+    const values = { dropdownRef, show, currentItem, setShow, setCurrentItem };
     return (
         <DropdownContext.Provider
             value={values}

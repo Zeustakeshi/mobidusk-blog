@@ -1,21 +1,46 @@
 import React, { useEffect, useState } from "react";
 import HeadingTitle from "../../component/layout/HeadingTitle";
 import PostFeatureItem from "../post/PostFeatureItem";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+    collection,
+    getDocs,
+    limit,
+    onSnapshot,
+    query,
+    where,
+} from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-config";
 
 const HomeFeature = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        const fetchPostData = async () => {
-            const postsRef = collection(db, "posts");
-            const q = query(
-                postsRef,
-                where("isFeature", "==", true),
-                where("status", "==", "approve"),
-                limit(3)
-            );
-            const querySnapshot = await getDocs(q);
+        // const fetchPostData = async () => {
+        //     const postsRef = collection(db, "posts");
+        // const q = query(
+        //     postsRef,
+        //     where("isFeature", "==", true),
+        //     where("status", "==", "approve"),
+        //     limit(3)
+        // );
+        //     const querySnapshot = await getDocs(q);
+        //     const results = [];
+        //     querySnapshot.forEach((doc) => {
+        //         results.push({
+        //             id: doc.id,
+        //             ...doc.data(),
+        //         });
+        //     });
+        //     setPosts(results);
+        // };
+        // fetchPostData();
+        const postsRef = collection(db, "posts");
+        const q = query(
+            postsRef,
+            where("isFeature", "==", true),
+            where("status", "==", "approve"),
+            limit(3)
+        );
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const results = [];
             querySnapshot.forEach((doc) => {
                 results.push({
@@ -24,8 +49,9 @@ const HomeFeature = () => {
                 });
             });
             setPosts(results);
-        };
-        fetchPostData();
+        });
+
+        return unsubscribe;
     }, []);
     if (posts.length <= 0) return null;
     return (

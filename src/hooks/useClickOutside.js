@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 
-function useClickOutside(ref, handler) {
+function useClickOutside(ref, refControl, handler) {
     useEffect(() => {
         const listener = (event) => {
-            if (!ref.current || ref.current.contains(event.target)) {
+            if (
+                !ref.current ||
+                ref.current.contains(event.target) ||
+                refControl.current.contains(event.target)
+            )
                 return;
-            }
-            handler(event);
+            handler();
         };
         document.addEventListener("mousedown", listener);
         document.addEventListener("touchstart", listener);

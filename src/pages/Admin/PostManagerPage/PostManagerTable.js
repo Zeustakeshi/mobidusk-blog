@@ -1,10 +1,6 @@
-import {
-    IconEditWrite,
-    IconEyeOpen,
-    IconTrash,
-} from "../../../component/icons";
 import Image from "../../../component/Image";
 import Table from "../../../component/table";
+import PostManagerAction from "./PostManagerAction";
 import PostManagerAuthor from "./PostManagerAuthor";
 import PostManagerFeature from "./PostManagerFeature";
 import PostManagerStatus from "./PostManagerStatus";
@@ -12,7 +8,7 @@ const tableField = ["Id", "Post", "Author", "Featured", "Status", "Action"];
 
 const PostManagerTable = ({ posts }) => {
     return (
-        <div className="h-full overflow-y-scroll overflow-x-hidden custom-scrollbar p-2">
+        <div className="h-full overflow-y-scroll overflow-x-hiden custom-scrollbar p-2">
             <Table.Wrapper fields={tableField}>
                 {posts.map((post, index) => (
                     <Table.Item key={post.id}>
@@ -56,17 +52,7 @@ const PostManagerTable = ({ posts }) => {
                             />
                         </Table.Content>
                         <Table.Content>
-                            <div className="p-3 flex justify-start items-center gap-3">
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
-                                    <IconEyeOpen />
-                                </span>
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
-                                    <IconEditWrite />
-                                </span>
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
-                                    <IconTrash />
-                                </span>
-                            </div>
+                            <PostManagerAction post={post} />
                         </Table.Content>
                     </Table.Item>
                 ))}

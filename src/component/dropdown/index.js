@@ -1,6 +1,6 @@
 import Dropdown from "./Dropdown";
 import DropdownItem from "./DropdownItem";
-import DropdownSelection from "./DropdownItemSelection";
+import DropdownSelection from "./DropdownSelection";
 import DropdownLabel from "./DropdownLabel";
 
 const DropdownField = {

@@ -29,17 +29,19 @@ const PostManagerStatus = ({ status, postId }) => {
                     className="p-[10px] bg-[#fff]"
                 />
                 <DropdownField.Selection>
-                    {statuses.map((status) => (
-                        <DropdownField.Item
-                            key={status}
-                            value={status}
-                            onClick={(prevStatus) => {
-                                handleChooseStatus(prevStatus, status);
-                            }}
-                        >
-                            {status}
-                        </DropdownField.Item>
-                    ))}
+                    {statuses
+                        .filter((item) => item !== status)
+                        .map((status) => (
+                            <DropdownField.Item
+                                key={status}
+                                value={status}
+                                onClick={(prevStatus) => {
+                                    handleChooseStatus(prevStatus, status);
+                                }}
+                            >
+                                {status}
+                            </DropdownField.Item>
+                        ))}
                 </DropdownField.Selection>
             </Dropdown>
         </div>

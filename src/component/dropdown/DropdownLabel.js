@@ -14,7 +14,9 @@ const DropdownLabel = ({ className = "", label = "" }) => {
         <div
             ref={ref}
             className={`w-full h-full flex justify-between items-center cursor-pointer bg-green-bright rounded-[inherit] p-5 ${className}`}
-            onClick={() => setShow(!show)}
+            onClick={() => {
+                setShow(!show);
+            }}
         >
             <div className="flex-1 font-medium">{currentItem}</div>
             <span className="flex justify-center items-center">
