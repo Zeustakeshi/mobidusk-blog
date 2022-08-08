@@ -3,7 +3,7 @@ import { useDropdown } from "../../context/dropdownContext";
 import { IconChevron } from "../icons";
 import PropTypes from "prop-types";
 
-const DropdownLabel = ({ className, label = "" }) => {
+const DropdownLabel = ({ className = "", label = "" }) => {
     const { currentItem, show, setShow, setCurrentItem } = useDropdown();
     const ref = useRef();
     useEffect(() => {
@@ -30,7 +30,6 @@ const DropdownLabel = ({ className, label = "" }) => {
 
 DropdownLabel.propTypes = {
     className: PropTypes.string,
-    label: PropTypes.string,
 };
 
 export default DropdownLabel;

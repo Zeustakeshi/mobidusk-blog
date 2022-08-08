@@ -9,7 +9,12 @@ const HomeFeature = () => {
     useEffect(() => {
         const fetchPostData = async () => {
             const postsRef = collection(db, "posts");
-            const q = query(postsRef, where("isFeature", "==", true), limit(3));
+            const q = query(
+                postsRef,
+                where("isFeature", "==", true),
+                where("status", "==", "approve"),
+                limit(3)
+            );
             const querySnapshot = await getDocs(q);
             const results = [];
             querySnapshot.forEach((doc) => {

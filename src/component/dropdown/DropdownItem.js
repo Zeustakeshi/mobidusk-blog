@@ -9,10 +9,10 @@ const DropdownItem = ({
     clickCloseDropDown = true,
     clickActiveLabel = true,
 }) => {
-    const { setCurrentItem, setShow } = useDropdown();
+    const { setCurrentItem, setShow, currentItem } = useDropdown();
     const handleClick = () => {
-        onClick && onClick();
         clickActiveLabel && setCurrentItem(value);
+        onClick && onClick(currentItem);
         clickCloseDropDown && setShow(false);
     };
 

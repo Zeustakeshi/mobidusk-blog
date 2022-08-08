@@ -50,17 +50,20 @@ const PostManagerTable = ({ posts }) => {
                             />
                         </Table.Content>
                         <Table.Content>
-                            <PostManagerStatus status={post.status} />
+                            <PostManagerStatus
+                                status={post.status}
+                                postId={post.id}
+                            />
                         </Table.Content>
                         <Table.Content>
                             <div className="p-3 flex justify-start items-center gap-3">
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500">
+                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
                                     <IconEyeOpen />
                                 </span>
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500">
+                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
                                     <IconEditWrite />
                                 </span>
-                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500">
+                                <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
                                     <IconTrash />
                                 </span>
                             </div>

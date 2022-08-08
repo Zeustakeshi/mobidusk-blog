@@ -3,12 +3,12 @@ import React from "react";
 const TableWrapper = ({
     fields = [],
     fieldsClassName,
-    className,
+    className = "",
     children,
 }) => {
     return (
         <div className={`max-h-[calc(100vh-250px)] ${className}`}>
-            <table className="w-full h-full rounded-lg p-5 overflow-hidden">
+            <table className="w-full h-full rounded-lg p-5">
                 <thead className=" bg-slate-100">
                     <tr>
                         {fields.map((field) => (
