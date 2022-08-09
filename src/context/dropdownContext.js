@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import useClickOutside from "../hooks/useClickOutside";
 
 const DropdownContext = createContext();
 

@@ -2,10 +2,14 @@ import React from "react";
 import { IconSearch } from "../../../component/icons";
 import Input from "../../../component/Input/Input";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
-import ProfilePostTable from "./ProfilePostTable";
 import Button from "../../../component/Button";
+import { useAuth } from "../../../context/authContext";
+import ManagerPost from "../../../module/managerPost/ManagerPost";
+
+const managerField = ["Id", "Post", "Status", "Feature", "Action"];
 
 const ProfilePostPage = () => {
+    const { userInfo } = useAuth();
     return (
         <ProfileLayout
             title="Manage Post"
@@ -29,9 +33,12 @@ const ProfilePostPage = () => {
                     <IconSearch />
                 </Input>
             </div>
-            <div className="max-h-[550px] overflow-y-scroll overflow-x-hidden custom-scrollbar p-2">
-                <ProfilePostTable></ProfilePostTable>
-            </div>
+            {userInfo && (
+                <ManagerPost
+                    userID={userInfo.uid}
+                    managerField={managerField}
+                />
+            )}
         </ProfileLayout>
     );
 };

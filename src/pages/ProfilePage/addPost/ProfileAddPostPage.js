@@ -84,7 +84,7 @@ const ProfileAddPostPage = () => {
 
                             await addDoc(collection(db, "posts"), {
                                 ...values,
-                                status: "pending",
+                                status: "approve",
                                 authorID: userInfo.uid,
                                 time: serverTimestamp(),
                             });

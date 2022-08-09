@@ -3,7 +3,6 @@ import HeadingTitle from "../../component/layout/HeadingTitle";
 import PostFeatureItem from "../post/PostFeatureItem";
 import {
     collection,
-    getDocs,
     limit,
     onSnapshot,
     query,
@@ -38,6 +37,7 @@ const HomeFeature = () => {
             postsRef,
             where("isFeature", "==", true),
             where("status", "==", "approve"),
+            where("isPublic", "==", true),
             limit(3)
         );
         const unsubscribe = onSnapshot(q, (querySnapshot) => {

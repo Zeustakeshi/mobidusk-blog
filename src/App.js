@@ -10,20 +10,12 @@ import ProfilePostPage from "./pages/ProfilePage/post/ProfilePostPage";
 import ProfileUserPage from "./pages/ProfilePage/user/ProfileUserPage";
 import NotFoundPage from "./pages/Not-found/NotFoundPage";
 import PostDetailPage from "./pages/PostDetail/PostDetailPage";
-import AdminPage from "./pages/Admin/AdminPage";
-import PostManagerPage from "./pages/Admin/PostManagerPage/PostManagerPage";
 
 function App() {
     return (
         <div className="App">
             <AuthProvider>
                 <Routes>
-                    <Route element={<AdminPage />}>
-                        <Route
-                            path="admin/post"
-                            element={<PostManagerPage />}
-                        ></Route>
-                    </Route>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/blog" element={<HomePage />} />
                     <Route path="/contact" element={<HomePage />} />

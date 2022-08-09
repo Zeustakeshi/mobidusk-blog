@@ -1,14 +1,16 @@
 import { doc, updateDoc } from "firebase/firestore";
+import React from "react";
 import { toast } from "react-toastify";
-import { Dropdown, DropdownField } from "../../../component/dropdown";
-import { db } from "../../../firebase-app/firebase-config";
+import { useManagerPostItem } from "../../context/managerPostItemContext";
+import { db } from "../../firebase-app/firebase-config";
+import { Dropdown, DropdownField } from "../../component/dropdown";
 
 const statuses = ["pending", "approve", "reject"];
-
-const PostManagerStatus = ({ status, postId }) => {
+const ManagerStatus = () => {
+    const { post } = useManagerPostItem();
     const handleChooseStatus = async (prevStatus, status) => {
         if (status === prevStatus) return;
-        const PostRef = doc(db, "posts", postId);
+        const PostRef = doc(db, "posts", post.id);
         await toast.promise(
             updateDoc(PostRef, {
                 status: status,
@@ -25,12 +27,12 @@ const PostManagerStatus = ({ status, postId }) => {
         <div className="text-gray-500 font-medium">
             <Dropdown>
                 <DropdownField.Label
-                    label={status}
+                    label={post.status}
                     className="p-[10px] bg-[#fff]"
                 />
                 <DropdownField.Selection>
                     {statuses
-                        .filter((item) => item !== status)
+                        .filter((item) => item !== post.status)
                         .map((status) => (
                             <DropdownField.Item
                                 key={status}
@@ -47,4 +49,5 @@ const PostManagerStatus = ({ status, postId }) => {
         </div>
     );
 };
-export default PostManagerStatus;
+
+export default ManagerStatus;

@@ -48,7 +48,7 @@ const ProfileLayout = ({ children, title, button }) => {
         if (!userInfo) {
             navigate("/sign-in");
         } else {
-            document.title = "Proflie";
+            document.title = "Profile";
         }
     }, [userInfo]);
 

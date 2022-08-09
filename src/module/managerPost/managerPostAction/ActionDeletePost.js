@@ -1,15 +1,13 @@
 import { deleteDoc, doc } from "firebase/firestore";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 import React from "react";
 import { toast } from "react-toastify";
-import {
-    IconEditWrite,
-    IconEyeOpen,
-    IconTrash,
-} from "../../../component/icons";
+import { useManagerPostItem } from "../../../context/managerPostItemContext";
 import { db } from "../../../firebase-app/firebase-config";
-import { getStorage, ref, deleteObject } from "firebase/storage";
+import { IconTrash } from "../../../component/icons";
 
-const PostManagerAction = ({ post }) => {
+const ActionDeletePost = () => {
+    const { post } = useManagerPostItem();
     const handleDetelePost = async () => {
         const userConfirm = window.confirm(
             "Are you sure you want to delete this post?"
@@ -33,21 +31,13 @@ const PostManagerAction = ({ post }) => {
         );
     };
     return (
-        <div className="p-3 flex justify-start items-center gap-3">
-            <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
-                <IconEyeOpen />
-            </span>
-            <span className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary">
-                <IconEditWrite />
-            </span>
-            <span
-                onClick={handleDetelePost}
-                className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary"
-            >
-                <IconTrash />
-            </span>
-        </div>
+        <span
+            onClick={handleDetelePost}
+            className="p-2 border border-gray-200 rounded-md cursor-pointer text-gray-500 hover:border-secondary"
+        >
+            <IconTrash />
+        </span>
     );
 };
 
-export default PostManagerAction;
+export default ActionDeletePost;

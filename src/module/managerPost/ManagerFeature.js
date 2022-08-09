@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import ToggleButton from "../../../component/ToggleButton";
+import ToggleButton from "../../component/ToggleButton";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../../firebase-app/firebase-config";
+import { db } from "../../firebase-app/firebase-config";
 import { toast } from "react-toastify";
+import { useManagerPostItem } from "../../context/managerPostItemContext";
 
-const PostManagerFeature = ({ isFeature, postId }) => {
-    const [active, setActive] = useState(isFeature);
+const ManagerFeature = () => {
+    const { post } = useManagerPostItem();
+    const [active, setActive] = useState(post.isFeature);
     const handleChange = async () => {
-        const PostRef = doc(db, "posts", postId);
+        const PostRef = doc(db, "posts", post.id);
         await toast.promise(
             updateDoc(PostRef, {
                 isFeature: !active,
@@ -27,4 +29,4 @@ const PostManagerFeature = ({ isFeature, postId }) => {
     );
 };
 
-export default PostManagerFeature;
+export default ManagerFeature;
