@@ -34,7 +34,10 @@ const PostFeatureItem = ({ post }) => {
                         to={slugify(post.authorID, { lower: true })}
                     />
                 </div>
-                <PostTitle className="font-semibold text-xl" to={post.id}>
+                <PostTitle
+                    className="font-semibold text-xl max-w-full"
+                    to={post.id}
+                >
                     {post.title}
                 </PostTitle>
             </div>

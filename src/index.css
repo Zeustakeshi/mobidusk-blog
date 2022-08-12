@@ -88,3 +88,18 @@ a {
     --bg-thumb-hover: #14b8a6;
     background: var(--bg-thumb-hover);
 }
+
+/* animation */
+.move-down-enter {
+    transform: translateY(-50%);
+}
+
+.move-down-enter-active {
+    transform: translateY(0);
+}
+
+.move-down-exit-active {
+    transform: translateY(-25%);
+    opacity: 0;
+    visibility: hidden;
+}

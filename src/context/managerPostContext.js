@@ -26,7 +26,7 @@ const ManagerPostProvider = ({ userID, managerField, ...props }) => {
             setPosts(results);
         });
         return unsubscribe;
-    }, []);
+    }, [userID]);
     const values = { posts, managerField };
     return (
         <ManagerPostContext.Provider

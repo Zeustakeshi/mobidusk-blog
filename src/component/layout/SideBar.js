@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const SideBar = ({ navigates, children, className }) => {
     return (
         <div
-            className={`fixed top-[50%] -translate-y-2/4 z-20 shadow-style-6 rounded-2xl w-full max-w-[350px] py-5 ${className}`}
+            className={`fixed top-[50%] -translate-y-2/4 z-20 shadow-style-6 rounded-2xl w-full max-w-[350px] py-5 min-h-[60vh] ${className} flex flex-col justify-start`}
         >
             <ul className={`w-full flex flex-col py-4`}>
                 {navigates.map((item) => (

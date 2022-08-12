@@ -18,7 +18,12 @@ const ManagerPostContent = () => {
                         {managerField.map((item, index) => {
                             return (
                                 <Table.Content key={index}>
-                                    {managerPostItem[item]}
+                                    {
+                                        managerPostItem[
+                                            item[0].toUpperCase() +
+                                                item.substring(1)
+                                        ]
+                                    }
                                 </Table.Content>
                             );
                         })}

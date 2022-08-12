@@ -13,7 +13,7 @@ const useFIrebaseImage = () => {
         return ref(storage, "images/" + fileName);
     };
     const handleUploadImage = async (file) => {
-        if (!file) return;
+        if (!file || !file.name) return;
         await uploadBytesResumable(getStorageRef(file.name), file);
 
         return await getDownloadURL(getStorageRef(file.name));

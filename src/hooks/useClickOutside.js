@@ -6,7 +6,7 @@ function useClickOutside(ref, refControl, handler) {
             if (
                 !ref.current ||
                 ref.current.contains(event.target) ||
-                refControl.current.contains(event.target)
+                (refControl && refControl.current.contains(event.target))
             )
                 return;
             handler();

@@ -1,5 +1,5 @@
 import { ErrorMessage, Field } from "formik";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { IconEye } from "../icons";
 import PropTypes from "prop-types";
 
@@ -26,12 +26,14 @@ const InputField = ({
         <div
             className={`flex flex-col gap-2 p-[10px] w-full ${wrapperClassName}`}
         >
-            <label
-                className={`font-semibold text-[20px] text-black ${labelClassName}`}
-                htmlFor={id || name}
-            >
-                {label}
-            </label>
+            {label && (
+                <label
+                    className={`font-semibold text-[20px] text-black ${labelClassName}`}
+                    htmlFor={id || name}
+                >
+                    {label}
+                </label>
+            )}
             <div
                 className={`${
                     hasIcon
@@ -77,7 +79,7 @@ const InputField = ({
 };
 
 InputField.propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     type: PropTypes.string.isRequired,
     id: PropTypes.string,
     name: PropTypes.string.isRequired,

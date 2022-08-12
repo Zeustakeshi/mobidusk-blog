@@ -45,8 +45,9 @@ function Image(
                 src={src}
                 alt={alt}
                 className={`w-full h-full object-cover rounded-[inherit] ${className}`}
-                {...props}
                 onError={handleError}
+                loading="lazy"
+                {...props}
             />
         </ImgWrapper>
     );

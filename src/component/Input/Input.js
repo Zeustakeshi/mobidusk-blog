@@ -1,16 +1,20 @@
 import PropTypes from "prop-types";
-const Input = ({
-    type,
-    id,
-    name,
-    placeholder = "",
-    className = "",
-    children,
-    iconClassName = "",
-    inputClassName = "",
-    iconClick,
-    ...props
-}) => {
+import { forwardRef } from "react";
+const Input = (
+    {
+        type,
+        id,
+        name,
+        placeholder = "",
+        className = "",
+        children,
+        iconClassName = "",
+        inputClassName = "",
+        iconClick,
+        ...props
+    },
+    ref
+) => {
     const hasIcon = !!children;
     return (
         <div
@@ -21,7 +25,7 @@ const Input = ({
             } w-full relative ${className} `}
         >
             <input
-                {...props}
+                ref={ref}
                 type={type}
                 name={name}
                 id={id || name}
@@ -32,6 +36,7 @@ const Input = ({
                         : "border-none pr-0"
                 }  transition-all placeholder:text-[#C4C4C4] px-[25px] py-4 ${inputClassName}`}
                 autoComplete="off"
+                {...props}
             />
             {hasIcon && (
                 <span
@@ -45,16 +50,16 @@ const Input = ({
     );
 };
 
-Input.propTypes = {
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    iconClassName: PropTypes.string,
-    inputClassName: PropTypes.string,
-    iconClick: PropTypes.func,
-};
+// Input.propTypes = {
+//     type: PropTypes.string.isRequired,
+//     id: PropTypes.string,
+//     name: PropTypes.string.isRequired,
+//     placeholder: PropTypes.string,
+//     children: PropTypes.node,
+//     className: PropTypes.string,
+//     iconClassName: PropTypes.string,
+//     inputClassName: PropTypes.string,
+//     iconClick: PropTypes.func,
+// };
 
-export default Input;
+export default forwardRef(Input);

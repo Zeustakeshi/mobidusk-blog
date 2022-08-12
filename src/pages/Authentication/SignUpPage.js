@@ -40,6 +40,8 @@ const SignUpPage = () => {
                     fullName: values.fullName,
                     email: values.email,
                     password: values.password,
+                    avatar: "",
+                    habits: [],
                 });
             },
             {
@@ -92,28 +94,24 @@ const SignUpPage = () => {
                     </div>
                 }
             >
-                {() => (
-                    <>
-                        <Field.Input
-                            label="Full name"
-                            name="fullName"
-                            type="text"
-                            placeholder="Please enter your full name"
-                        />
-                        <Field.Input
-                            label="Email address"
-                            name="email"
-                            type="email"
-                            placeholder="Please enter your email"
-                        />
-                        <Field.Input
-                            label="Password"
-                            name="password"
-                            type="password"
-                            placeholder="Please enter your password"
-                        />
-                    </>
-                )}
+                <Field.Input
+                    label="Full name"
+                    name="fullName"
+                    type="text"
+                    placeholder="Please enter your full name"
+                />
+                <Field.Input
+                    label="Email address"
+                    name="email"
+                    type="email"
+                    placeholder="Please enter your email"
+                />
+                <Field.Input
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Please enter your password"
+                />
             </Form>
         </AuthenticationPage>
     );
