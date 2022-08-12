@@ -35,7 +35,7 @@ const ProfileUserPage = () => {
 
                     <EditName />
 
-                    {/* <EditHabit /> */}
+                    <EditHabit />
                 </div>
             </ProfileUserProvider>
         </ProfileLayout>

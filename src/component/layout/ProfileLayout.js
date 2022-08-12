@@ -47,8 +47,6 @@ const ProfileLayout = ({ children, title, button }) => {
     useEffect(() => {
         if (!userInfo) {
             navigate("/sign-in");
-        } else {
-            document.title = "Profile";
         }
     }, [userInfo]);
 

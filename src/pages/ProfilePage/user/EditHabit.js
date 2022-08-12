@@ -1,62 +1,106 @@
 import { useField } from "formik";
 import React, { useRef, useState } from "react";
-import { useEffect } from "react";
 import { IconCloseCircle } from "../../../component/icons";
 import Input from "../../../component/Input/Input";
-import { useAuth } from "../../../context/authContext";
 import { useProfileUser } from "../../../context/prodfileUserContext";
 import useClickOutside from "../../../hooks/useClickOutside";
+import Button from "../../../component/Button";
+import { toast } from "react-toastify";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase-app/firebase-config";
+import { useEffect } from "react";
 
 const EditHabit = () => {
     const { profileUser } = useProfileUser();
-    const [{ value: habits }, , helpper] = useField("habits");
+    const habits = profileUser.habits;
+    const [habitsClone, setHabitsClone] = useState([]);
     useEffect(() => {
-        helpper.setValue(profileUser.habits);
-    }, [profileUser.habits]);
-
+        setHabitsClone([...habits]);
+    }, [habits]);
     if (habits?.length < 0) return;
+    const handleUpdateHabits = () => {
+        toast.promise(
+            async () => {
+                const userRef = doc(db, "users", profileUser.uid);
+                try {
+                    await updateDoc(userRef, {
+                        habits: [...habitsClone],
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            {
+                pending: "Plase wait ....",
+                success: "Update habits is success",
+                error: "Update habits is faild",
+            }
+        );
+    };
+
     return (
-        <div className="group flex flex-wrap gap-4 justify-center items-center mt-5">
-            {habits?.map((habit, index) => (
-                <div
-                    key={index}
-                    className=" relative bg-blue-100 text-primary font-semibold rounded-xl "
-                >
-                    <div className="peer content-overflow-one-line px-4 py-2 max-w-[400px]">
-                        {habit}
-                    </div>
-                    <span
-                        onClick={() => {
-                            helpper.setValue(
-                                habits.filter((item) => item !== habit)
-                            );
-                        }}
-                        className="absolute -top-[5px] -right-[5px] flex justify-center items-center cursor-pointer text-base text-blue-300 opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible "
+        <div className="flex flex-col gap-4">
+            <div className="group flex flex-wrap gap-4 justify-center items-center mt-5">
+                {habitsClone?.map((habit, index) => (
+                    <div
+                        key={index}
+                        className=" relative bg-blue-100 text-primary font-semibold rounded-xl "
                     >
-                        <IconCloseCircle fill />
-                    </span>
+                        <div className="peer content-overflow-one-line px-4 py-2 max-w-[400px]">
+                            {habit}
+                        </div>
+                        <span
+                            onClick={() => {
+                                setHabitsClone((prev) =>
+                                    prev.filter((item) => item !== habit)
+                                );
+                            }}
+                            className="absolute -top-[5px] -right-[5px] flex justify-center items-center cursor-pointer text-base text-blue-300 opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible "
+                        >
+                            <IconCloseCircle fill />
+                        </span>
+                    </div>
+                ))}
+                <AddHabitButton
+                    habits={habitsClone}
+                    setHabits={setHabitsClone}
+                />
+            </div>
+            {JSON.stringify(habits) !== JSON.stringify(habitsClone) && (
+                <div className="flex justify-center items-center gap-5">
+                    <Button
+                        className="max-w-[46px] max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3"
+                        kind="secondary"
+                        onClick={handleUpdateHabits}
+                    >
+                        ✓
+                    </Button>
+                    <Button
+                        className="max-w-[46px] max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3 text-[tomato]"
+                        kind="secondary"
+                        onClick={() => setHabitsClone(habits)}
+                    >
+                        x
+                    </Button>
                 </div>
-            ))}
-            <AddHabitButton />
+            )}
         </div>
     );
 };
 
-const AddHabitButton = () => {
-    const [{ value: habits }, , hepper] = useField("habits");
-
+const AddHabitButton = ({ habits, setHabits }) => {
     const [value, setValue] = useState("");
     const [type, setType] = useState("div");
     const ref = useRef();
     const handleAddHabits = () => {
         if (value.trim() && !habits.includes(value?.trim())) {
-            hepper.setValue([...habits, value?.trim()]);
+            setHabits([...habits, value?.trim()]);
         }
         setType("div");
+        setValue("");
     };
 
     useClickOutside(ref, null, handleAddHabits);
-
     if (habits?.length >= 10) {
         return null;
     }
@@ -84,6 +128,7 @@ const AddHabitButton = () => {
                             handleAddHabits();
                         }
                     }}
+                    value={value}
                     onChange={(e) => setValue(e.target.value)}
                 />
             </div>

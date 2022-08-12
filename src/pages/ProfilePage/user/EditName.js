@@ -1,8 +1,8 @@
+import { updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { toast } from "react-toastify";
-import Button from "../../../component/Button";
 import { IconPencil } from "../../../component/icons";
 import Input from "../../../component/Input/Input";
 import { useProfileUser } from "../../../context/prodfileUserContext";
@@ -17,44 +17,56 @@ const EditName = () => {
     const ref = useRef();
     useClickOutside(ref, null, () => {
         setType("div");
-    });
-    const handleEditName = () => {
-        toast.promise(
-            async () => {
-                const userRef = doc(db, "users", profileUser.uid);
-                try {
-                    await updateDoc(userRef, {
-                        fullName: value,
-                    });
-                } catch (error) {
-                    console.log(error);
-                }
-            },
-            {
-                pending: "Plase wait ....",
-                success: "Update name is success",
-                error: "Update name is faild",
-            }
+        const initName = profileUser.name;
+        const currentName = value.trim();
+
+        if (!currentName || initName === currentName) return;
+
+        const confirm = window.confirm(
+            `Bạn muốn thay đổi tên từ "${profileUser.name}" sang "${value}" chứ ?`
         );
-    };
+        if (confirm) {
+            toast.promise(
+                async () => {
+                    const userRef = doc(db, "users", profileUser.uid);
+                    try {
+                        await updateDoc(userRef, {
+                            fullName: value,
+                        });
+                        await updateProfile(profileUser.uid, {
+                            displayName: value,
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                },
+                {
+                    pending: "Plase wait ....",
+                    success: "Update name is success",
+                    error: "Update name is faild",
+                }
+            );
+        } else {
+            setValue(profileUser.name);
+        }
+    });
 
     return (
         <div className="relative  flex items-center justify-center ">
             {type === "div" ? (
-                <div className="flex justify-center items-center gap-[44px] w-full">
-                    <div className="group relative">
-                        <div className="text-2xl text-gray-600 font-medium p-3 pr-0 max-w-[500px] content-overflow-one-line transition-all">
-                            {value.trim() || profileUser.name}
-                        </div>
-
-                        <span
-                            onClick={() => setType("input")}
-                            className="absolute top-[50%] -translate-y-2/4 right-0 translate-x-full  p-3 transition-all cursor-pointer"
-                        >
-                            <IconPencil />
-                        </span>
+                <div className="group relative flex justify-center items-center gap-[44px] w-full">
+                    <div className="text-2xl text-gray-600 font-medium p-3 pr-0 max-w-[500px] content-overflow-one-line transition-all">
+                        {value.trim() || profileUser.name}
                     </div>
-                    {value.trim() !== "" &&
+
+                    <span
+                        onClick={() => setType("input")}
+                        className="absolute top-[50%] -translate-y-2/4 right-0 translate-x-full  p-3 transition-all cursor-pointer"
+                    >
+                        <IconPencil />
+                    </span>
+
+                    {/* {value.trim() !== "" &&
                         value.trim() !== profileUser.name.trim() && (
                             <Button
                                 type="button"
@@ -64,7 +76,7 @@ const EditName = () => {
                             >
                                 ✓
                             </Button>
-                        )}
+                        )} */}
                 </div>
             ) : (
                 <div ref={ref}>

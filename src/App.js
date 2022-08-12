@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/authContext";
 import { lazy, Suspense } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignInPage = lazy(() => import("./pages/Authentication/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/Authentication/SignUpPage"));
@@ -24,6 +25,7 @@ const PostDetailPage = lazy(() => import("./pages/PostDetail/PostDetailPage"));
 function App() {
     return (
         <div className="App">
+            <ToastContainer autoClose={2000} />
             <Suspense fallback={<></>}>
                 <AuthProvider>
                     <Routes>
@@ -52,7 +54,6 @@ function App() {
                         />
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
-                    <ToastContainer />
                 </AuthProvider>
             </Suspense>
         </div>

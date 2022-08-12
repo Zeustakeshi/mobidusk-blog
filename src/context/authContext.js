@@ -12,6 +12,7 @@ const AuthProvider = (props) => {
         });
     }, []);
     const values = { userInfo, setUserInfo };
+
     return (
         <AuthContext.Provider value={values} {...props}></AuthContext.Provider>
     );

@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import { useManagerPostItem } from "../../../context/managerPostItemContext";
 import { db } from "../../../firebase-app/firebase-config";
 import { IconTrash } from "../../../component/icons";
+import useFIrebaseImage from "../../../hooks/useFirebaseImage";
 
 const ActionDeletePost = () => {
     const { post } = useManagerPostItem();
+    const { handleDeteleImage } = useFIrebaseImage();
     const handleDetelePost = async () => {
         const userConfirm = window.confirm(
             "Are you sure you want to delete this post?"
@@ -16,12 +18,8 @@ const ActionDeletePost = () => {
 
         await toast.promise(
             async () => {
-                const storage = getStorage();
-                const imageName = post.image.slice(87, post.image.indexOf("?"));
-                const ImageRef = ref(storage, "images/" + imageName);
+                handleDeteleImage(post.image, "images");
                 await deleteDoc(doc(db, "posts", post.id));
-
-                await deleteObject(ImageRef);
             },
             {
                 pending: "Please wait ! ...",

@@ -5,6 +5,7 @@ import Input from "../Input/Input";
 import Header from "./Header";
 import Button from "../Button";
 import { NavLink } from "react-router-dom";
+import Image from "../Image";
 
 const headerTags = [
     {
@@ -47,9 +48,14 @@ const MainLayout = ({ children, progress }) => {
                                 Sign Up
                             </Button>
                         ) : (
-                            <NavLink to="/dashboard">
-                                {userInfo.displayName}
-                            </NavLink>
+                            <div className="flex  w-[58px] h-[58px] rounded-full overflow-hidden">
+                                <NavLink to="/user">
+                                    <Image
+                                        src={userInfo.photoURL}
+                                        className=""
+                                    />
+                                </NavLink>
+                            </div>
                         )}
                     </>
                 }
