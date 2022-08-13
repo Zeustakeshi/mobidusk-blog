@@ -22,7 +22,7 @@ const headerTags = [
     },
 ];
 
-const MainLayout = ({ children, progress }) => {
+const MainLayout = ({ children }) => {
     const { userInfo } = useAuth();
     return (
         <div className="page-container relative pt-[150px] min-h-[3000px]">
@@ -49,7 +49,7 @@ const MainLayout = ({ children, progress }) => {
                             </Button>
                         ) : (
                             <div className="flex  w-[58px] h-[58px] rounded-full overflow-hidden">
-                                <NavLink to="/user">
+                                <NavLink to="/dashboard">
                                     <Image
                                         src={userInfo.photoURL}
                                         className=""
@@ -59,7 +59,6 @@ const MainLayout = ({ children, progress }) => {
                         )}
                     </>
                 }
-                progress={progress}
             />
             {children}
         </div>

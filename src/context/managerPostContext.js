@@ -5,12 +5,13 @@ import { db } from "../firebase-app/firebase-config";
 
 const ManagerPostContext = createContext();
 
-const ManagerPostProvider = ({ userID, managerField, ...props }) => {
+const ManagerPostProvider = ({ currentUser, managerField, ...props }) => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
+        if (!currentUser.id) return;
         const postsRef = collection(db, "posts");
-        const q = userID
-            ? query(postsRef, where("authorID", "==", userID))
+        const q = currentUser
+            ? query(postsRef, where("author", "==", currentUser))
             : query(postsRef, where("isPublic", "==", true));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const results = [];
@@ -18,15 +19,16 @@ const ManagerPostProvider = ({ userID, managerField, ...props }) => {
                 results.push({
                     id: doc.id,
                     ...doc.data(),
-                    [`${userID ? "isPublic" : "isFeature"}`]:
-                        doc.data()[`${userID ? "isPublic" : "isFeature"}`] ||
-                        false,
+                    [`${currentUser ? "isPublic" : "isFeature"}`]:
+                        doc.data()[
+                            `${currentUser ? "isPublic" : "isFeature"}`
+                        ] || false,
                 });
             });
             setPosts(results);
         });
         return unsubscribe;
-    }, [userID]);
+    }, [currentUser]);
     const values = { posts, managerField };
     return (
         <ManagerPostContext.Provider

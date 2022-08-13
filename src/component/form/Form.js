@@ -13,7 +13,6 @@ const Form = ({
     footer,
     children,
 }) => {
-    console.log("re-render");
     return (
         <Formik
             initialValues={initialValues}

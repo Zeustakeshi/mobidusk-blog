@@ -41,7 +41,7 @@ const ProfileAddPostCategories = ({ name }) => {
                                 <Field.Checkbox
                                     name="categories"
                                     type="secondary"
-                                    value={category.name}
+                                    value={JSON.stringify(category)}
                                     className="w-full p-3 gap-10"
                                     size={20}
                                 >
@@ -61,7 +61,7 @@ const ProfileAddPostCategories = ({ name }) => {
                                 key={catefory}
                                 className="bg-green-bright text-secondary font-semibold rounded-xl p-2 text-center"
                             >
-                                {catefory}
+                                {JSON.parse(catefory).name}
                             </span>
                         );
                     })}

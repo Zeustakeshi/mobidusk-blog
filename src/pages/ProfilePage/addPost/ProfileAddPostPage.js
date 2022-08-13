@@ -14,7 +14,7 @@ const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
     title: "",
     image: "",
-    categories: ["kiến thức", "công nghệ"],
+    categories: [],
     isPublic: true,
 };
 
@@ -52,6 +52,7 @@ const ProfileAddPostPage = () => {
                         ),
                 })}
                 onSubmit={(values, action) => {
+                    action.setSubmitting(false);
                     toast.promise(
                         async () => {
                             values.image = await handleUploadImage(
@@ -60,8 +61,15 @@ const ProfileAddPostPage = () => {
                             try {
                                 await addDoc(collection(db, "posts"), {
                                     ...values,
+                                    searchValue: values.title.toLowerCase(),
                                     status: "approve",
-                                    authorID: userInfo.uid,
+                                    author: {
+                                        name: userInfo.displayName,
+                                        id: userInfo.uid,
+                                    },
+                                    categories: values.categories.map(
+                                        (category) => JSON.parse(category)
+                                    ),
                                     time: serverTimestamp(),
                                 });
                             } catch (error) {

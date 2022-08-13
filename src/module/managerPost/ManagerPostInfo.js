@@ -9,16 +9,20 @@ const ManagerPostInfo = () => {
             <div className=" min-w-[100px] h-[80px] rounded-lg">
                 <Image alt="" src={post.image} />
             </div>
-            <div className=" flex flex-col justify-start items-start max-w-[300px]">
+            <div className=" flex flex-col justify-start items-start max-w-[300px] gap-2 py-2">
                 <h4
                     className="content-overflow-limitline font-semibold text-xl"
                     style={{ ["--line"]: 1 }}
                 >
                     {post.title}
                 </h4>
-                <div className="flex justify-center items-center gap-1 text-gray-600 text-base font-medium">
-                    <span>Date:</span>
-                    <span>25 Otc 2021</span>
+                <div className="flex justify-center items-center gap-1 text-base font-medium">
+                    <span className="font-semibold text-gray-600">Date:</span>
+                    <span className="text-gray-500">
+                        {new Date(post.time.seconds * 1000).toLocaleDateString(
+                            "Vi-vi"
+                        )}
+                    </span>
                 </div>
             </div>
         </div>

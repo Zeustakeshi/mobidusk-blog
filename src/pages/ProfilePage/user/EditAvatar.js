@@ -36,10 +36,16 @@ const EditAvatar = () => {
         }
         toast.promise(
             async () => {
-                const imageURL = await handleUploadImage(imageFile, "avatars");
+                const imageURL = await handleUploadImage(
+                    imageFile,
+                    `avatars/${profileUser.uid}`
+                );
                 const userRef = doc(db, "users", profileUser.uid);
                 try {
-                    handleDeteleImage(profileUser.avatar, "avatars");
+                    handleDeteleImage(
+                        profileUser.avatar,
+                        `avatars/${profileUser.uid}`
+                    );
 
                     await updateDoc(userRef, {
                         avatar: imageURL,

@@ -21,10 +21,12 @@ const useFIrebaseImage = () => {
 
     const handleDeteleImage = async (url, path) => {
         const storage = getStorage();
-        const indexImageName = url.search(`/${path}%2F`) + path.length + 4;
-        if (indexImageName === -1 + path.length + 4) {
+        const newPath = path.split("/").join("%2F");
+        const indexImageName =
+            url.search(`/${newPath}%2F`) + newPath.length + 4;
+        if (indexImageName === -1 + newPath.length + 4) {
             throw new Error(
-                ` location not found with path: ${path}  and: ${url}`
+                ` location not found with path: ${path}  and url: ${url}`
             );
         }
         const imageName = url.slice(indexImageName, url.indexOf("?"));

@@ -89,7 +89,6 @@ const SignInPage = () => {
     const lang = languageData.vi;
     const navigate = useNavigate();
     const { userInfo } = useAuth();
-    console.log(userInfo);
     useEffect(() => {
         document.title = lang.formTitle;
         if (userInfo?.uid) {

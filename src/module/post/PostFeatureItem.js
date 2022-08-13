@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PostCategory from "./PostCategory";
 import PostMeta from "./PostMeta";
 import PostTitle from "./PostTitle";
 import Image from "../../component/Image";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase-app/firebase-config";
-import slugify from "slugify";
+
 const PostFeatureItem = ({ post }) => {
-    const [authorName, setAuthorName] = useState("");
-    useEffect(() => {
-        const fetchAuthorData = async () => {
-            const docRef = doc(db, "users", post.authorID);
-            const docSnap = await getDoc(docRef);
-            setAuthorName(docSnap.data().fullName);
-        };
-        fetchAuthorData();
-    }, []);
     return (
         <div className="relative rounded-2xl h-[350px] overflow-hidden shadow-style-2 ">
             <Image
@@ -23,15 +12,21 @@ const PostFeatureItem = ({ post }) => {
                 alt=""
                 className="rounded-[inherit] object-cover w-full h-full"
             />
-            <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-start items-start p-5 gap-3  bg-slate-800 bg-opacity-70">
+            <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-start items-start p-5 gap-3  bg-slate-800 bg-opacity-70 mon-h-[38px]">
                 <div className="flex justify-between items-center w-full">
-                    <PostCategory>{post.categories[0]}</PostCategory>
+                    {post.categories[0] && (
+                        <PostCategory className="mb-[0px]">
+                            {post.categories[0].name}
+                        </PostCategory>
+                    )}
                     <PostMeta
-                        time={JSON.stringify(post.time.toDate().getFullYear())}
-                        authorName={authorName}
-                        className="text-base font-semibold"
+                        time={new Date(
+                            post.time.seconds * 1000
+                        ).toLocaleDateString("Vi-vi")}
+                        authorName={post.author.name}
+                        className="text-base font-semibold ml-auto"
                         color="#d1cece"
-                        to={slugify(post.authorID, { lower: true })}
+                        to={post.author.id}
                     />
                 </div>
                 <PostTitle

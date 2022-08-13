@@ -19,6 +19,9 @@ const ProfilePostPage = lazy(() =>
 const ProfileUserPage = lazy(() =>
     import("./pages/ProfilePage/user/ProfileUserPage")
 );
+const ProfileUserViewPage = lazy(() =>
+    import("./pages/ProfilePage/user/ProfileUserViewPage")
+);
 const NotFoundPage = lazy(() => import("./pages/Not-found/NotFoundPage"));
 const PostDetailPage = lazy(() => import("./pages/PostDetail/PostDetailPage"));
 
@@ -46,7 +49,7 @@ function App() {
                         <Route path="/user" element={<ProfileUserPage />} />
                         <Route
                             path="/user/:userID"
-                            element={<div>Profile oder user</div>}
+                            element={<ProfileUserViewPage />}
                         />
                         <Route
                             path="/dashboard"

@@ -45,7 +45,7 @@ const ProfileLayout = ({ children, title, button }) => {
     const { userInfo } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
-        if (!userInfo) {
+        if (!userInfo?.uid) {
             navigate("/sign-in");
         }
     }, [userInfo]);
