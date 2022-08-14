@@ -103,3 +103,57 @@ a {
     opacity: 0;
     visibility: hidden;
 }
+
+.entry-content h1,
+.entry-content .ql-editor h1 {
+    padding: 25px 0;
+    font-weight: 600;
+    font-size: 30px !important;
+    line-height: 36px;
+}
+
+.entry-content h2,
+.entry-content .ql-editor h2 {
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 28px !important;
+    line-height: 36px;
+}
+
+.entry-content h3,
+.entry-content .ql-editor h3 {
+    padding: 18px 0;
+    font-weight: 600;
+    font-size: 25px !important;
+    line-height: 36px;
+}
+
+.entry-content ol,
+.entry-content .ql-editor ol {
+    font-size: 20px;
+    list-style: disc;
+    padding-left: 40px;
+}
+
+.entry-content ul,
+.entry-content .ql-editor ul {
+    padding-left: 40px;
+    font-size: 20px;
+    list-style: decimal;
+}
+
+.entry-content p,
+.entry-content .ql-editor p {
+    font-size: 22px;
+    line-height: 2;
+    font-weight: 500;
+    color: #292d32;
+}
+
+.entry-content img,
+.entry-content .ql-editor img {
+    width: 100%;
+    max-width: 820px;
+    margin: 32px auto;
+    border-radius: 20px;
+}

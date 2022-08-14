@@ -38,6 +38,7 @@ const ProfilePostPage = () => {
                     currentUser={{
                         id: userInfo.uid,
                         name: userInfo.displayName,
+                        avatar: userInfo.photoURL,
                     }}
                     managerField={managerField}
                 />

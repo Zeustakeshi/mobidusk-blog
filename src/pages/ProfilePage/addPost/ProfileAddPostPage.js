@@ -9,6 +9,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase-app/firebase-config";
 import { useAuth } from "../../../context/authContext";
 import ProfileAddPostCategories from "./ProfileAddPostCategories";
+import ProfileAddPostEditor from "./ProfileAddPostEditor";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
@@ -16,6 +17,7 @@ const initialFormValues = {
     image: "",
     categories: [],
     isPublic: true,
+    content: "",
 };
 
 const ProfileAddPostPage = () => {
@@ -52,7 +54,6 @@ const ProfileAddPostPage = () => {
                         ),
                 })}
                 onSubmit={(values, action) => {
-                    action.setSubmitting(false);
                     toast.promise(
                         async () => {
                             values.image = await handleUploadImage(
@@ -66,6 +67,7 @@ const ProfileAddPostPage = () => {
                                     author: {
                                         name: userInfo.displayName,
                                         id: userInfo.uid,
+                                        avatar: userInfo.photoURL,
                                     },
                                     categories: values.categories.map(
                                         (category) => JSON.parse(category)
@@ -117,6 +119,7 @@ const ProfileAddPostPage = () => {
                     <div className="flex flex-col gap-5 p-[10px] w-full">
                         <ProfileAddPostCategories name="categories" />
                     </div>
+                    <ProfileAddPostEditor></ProfileAddPostEditor>
                     <Field.Checkbox
                         name="isPublic"
                         positonCheckbox="right"

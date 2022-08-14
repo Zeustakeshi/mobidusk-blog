@@ -9,9 +9,13 @@ const PostTitle = ({ className = "", children, limitLine = 4, to }) => {
             }}
             className={`${className} content-overflow-limitline leading-relaxed`}
         >
-            <NavLink to={to ? `/post/${to}` : "/"} className="block">
-                {children}
-            </NavLink>
+            {to ? (
+                <NavLink to={`/post/${to}`} className="block">
+                    {children}
+                </NavLink>
+            ) : (
+                children
+            )}
         </h3>
     );
 };

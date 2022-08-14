@@ -113,17 +113,6 @@ const SignInPage = () => {
                 },
             }
         );
-        // const userCredential = await signInWithEmailAndPassword(
-        //     auth,
-        //     values.email,
-        //     values.password
-        // );
-        // const userRef = doc(db, "users", userCredential.user.uid);
-        // const docSnap = await getDoc(userRef);
-
-        // if (docSnap.exists() && docSnap.data().isAdmin) {
-        //     navigate("/post");
-        // }
 
         action.setSubmitting(false);
         action.resetForm(initialFormValues);

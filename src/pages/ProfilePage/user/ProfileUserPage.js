@@ -20,13 +20,6 @@ const initialFormValues = {
 };
 
 const ProfileUserPage = () => {
-    const { handleUploadImage } = useFIrebaseImage();
-    const { userInfo } = useAuth();
-    const navigate = useNavigate();
-    useEffect(() => {
-        document.title = "User";
-        // if (!userInfo.uid) navigate("/");
-    }, []);
     return (
         <ProfileLayout title="Your Profile">
             <ProfileUserProvider>

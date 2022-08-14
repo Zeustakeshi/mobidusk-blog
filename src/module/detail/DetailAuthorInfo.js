@@ -2,18 +2,20 @@ import React from "react";
 import ContentImg from "./ContentImg";
 import ContentParagraph from "./ContentParagraph";
 import ContentTitle from "./ContentTitle";
+import { usePostDetail } from "../../context/postDetailContext";
 
 const DetailAuthorInfo = () => {
+    const { postInfo } = usePostDetail();
     return (
         <div className="w-full max-w-[900px] h-[250px] mx-auto flex justify-center items-center gap-[10px] rounded-[20px] bg-[#F8F9FA] shadow-style-3">
             <ContentImg
-                src="https://images.unsplash.com/photo-1611199340099-91a595a86812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGF1dGhvcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                className="w-full max-w-[237px] h-full rounded-[inherit]"
+                src={postInfo.author.avatar}
+                className="w-full max-w-[237px] h-full rounded-[inherit] border border-transparent border-r-slate-300 "
                 alt=""
             />
-            <div className="p-[30px] flex flex-col justify-center items-start w-full h-full">
+            <div className="p-[30px] flex flex-col justify-center items-start w-full h-full  ">
                 <ContentTitle className="my-0 text-secondary mb-[15px]">
-                    Jake Sullivan
+                    {postInfo.author.name}
                 </ContentTitle>
                 <ContentParagraph
                     style={{
