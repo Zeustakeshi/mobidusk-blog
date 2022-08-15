@@ -47,11 +47,11 @@ const ProfileLayout = ({ children, title, button }) => {
     useEffect(() => {
         document.title = "Profile";
     }, []);
-    useEffect(() => {
-        if (!userInfo?.uid) {
-            navigate("/sign-in");
-        }
-    }, [userInfo]);
+    // useEffect(() => {
+    //     if (!userInfo?.uid) {
+    //         navigate("/sign-in");
+    //     }
+    // }, [userInfo]);
 
     return (
         <div className="page-container relative pt-[150px]">

@@ -19,7 +19,7 @@ const DetailAuthorInfo = () => {
                 </ContentTitle>
                 <ContentParagraph
                     style={{
-                        ["--line"]: 4,
+                        "--line": 4,
                     }}
                     className="content-overflow-limitline mb-0 text-base !leading-relaxed "
                 >

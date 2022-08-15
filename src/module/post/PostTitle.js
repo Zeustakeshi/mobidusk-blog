@@ -5,7 +5,7 @@ const PostTitle = ({ className = "", children, limitLine = 4, to }) => {
     return (
         <h3
             style={{
-                ["--line"]: limitLine,
+                "--line": limitLine,
             }}
             className={`${className} content-overflow-limitline leading-relaxed`}
         >

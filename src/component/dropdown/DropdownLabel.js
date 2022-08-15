@@ -8,7 +8,7 @@ const DropdownLabel = ({ className = "", label = "" }) => {
     const ref = useRef();
     useEffect(() => {
         setCurrentItem(label);
-    }, [label]);
+    }, [label, setCurrentItem]);
 
     return (
         <div

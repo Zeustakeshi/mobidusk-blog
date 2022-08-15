@@ -1,21 +1,13 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect } from "react";
-import { Form, Field } from "../../component/form";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { auth, db } from "../../firebase-app/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { NavLink, useNavigate } from "react-router-dom";
-import AuthenticationPage from "./AuthenticationPage";
 import * as Yup from "yup";
+import { Field, Form } from "../../component/form";
 import { useAuth } from "../../context/authContext";
-import {
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    query,
-    where,
-} from "firebase/firestore";
+import { auth } from "../../firebase-app/firebase-config";
+import AuthenticationPage from "./AuthenticationPage";
 
 const initialFormValues = {
     email: "",
@@ -94,7 +86,7 @@ const SignInPage = () => {
         if (userInfo?.uid) {
             navigate("/");
         }
-    }, [lang.formTitle, userInfo]);
+    }, [lang.formTitle, navigate, userInfo]);
     const handleSubmit = async (values, action) => {
         await toast.promise(
             signInWithEmailAndPassword(auth, values.email, values.password),

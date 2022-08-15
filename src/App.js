@@ -1,8 +1,8 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { AuthProvider } from "./context/authContext";
-import { lazy, Suspense } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./context/authContext";
 
 const SignInPage = lazy(() => import("./pages/Authentication/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/Authentication/SignUpPage"));

@@ -19,9 +19,9 @@ const DetailHeading = () => {
                 >
                     {postInfo.title}
                 </PostTitle>
-                <div className="flex gap-3 my-5 flex-wrap">
-                    {postInfo.categories.length > 0 &&
-                        postInfo.categories.slice(0, 10).map((category) => (
+                {postInfo.categories.length > 0 && (
+                    <div className="flex gap-3 my-5 flex-wrap">
+                        {postInfo.categories.slice(0, 10).map((category) => (
                             <PostCategory
                                 className="mb-[10px]"
                                 key={category.id}
@@ -30,7 +30,8 @@ const DetailHeading = () => {
                                 {category.name}
                             </PostCategory>
                         ))}
-                </div>
+                    </div>
+                )}
                 <PostMeta
                     time={new Date(
                         postInfo.time.seconds * 1000

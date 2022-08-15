@@ -11,6 +11,7 @@ const Search = ({ placeholder, icon = false, handleSearch = () => {} }) => {
     useEffect(() => {
         if (debounceValue === "") return;
         handleSearch(debounceValue.toLowerCase());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debounceValue]);
 
     return (

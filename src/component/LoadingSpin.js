@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 const LoadingSpin = ({ size = 30, borderSize = 4, color = "white" }) => {
     return (
         <div

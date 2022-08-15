@@ -1,18 +1,75 @@
-import React from "react";
-import { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-const TextEditor = ({ className = "", setContent, content }) => {
+import ReactQuill, { Quill } from "react-quill";
+import React, { useRef } from "react";
+import ImageUploader from "quill-image-uploader";
+import { useState } from "react";
+import { useMemo } from "react";
+import axios from "axios";
+import { imgbbAPI } from "../config";
+
+Quill.register("modules/imageUploader", ImageUploader);
+// const formats = [
+//     "header",
+//     "bold",
+//     "italic",
+//     "underline",
+//     "strike",
+//     "blockquote",
+//     "list",
+//     "bullet",
+//     "indent",
+//     "link",
+//     "image",
+//     "imageBlot",
+// ];
+const TextEditor = ({ content, setContent }) => {
+    const reactQuillRef = useRef();
+    const modules = useMemo(() => {
+        return {
+            toolbar: [
+                ["bold", "italic", "underline", "strike"],
+                [
+                    { align: "" },
+                    { align: "center" },
+                    { align: "right" },
+                    { align: "justify" },
+                ],
+                ["blockquote", "code-block"],
+                [{ header: 1 }, { header: 2 }],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ header: [1, 2, 3, 4, false] }],
+                ["link", "image", "video"],
+                ["clean"],
+            ],
+
+            imageUploader: {
+                upload: async (file) => {
+                    const bodyFormData = new FormData();
+                    bodyFormData.append("image", file);
+                    const response = await axios({
+                        method: "post",
+                        url: imgbbAPI,
+                        data: bodyFormData,
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    });
+                    return response.data.data.url;
+                },
+            },
+        };
+    }, []);
+
     return (
-        <div className={`${className}`}>
-            <ReactQuill
-                theme="snow"
-                value={content}
-                onChange={setContent}
-                className="entry-content"
-            />
-        </div>
+        <ReactQuill
+            ref={reactQuillRef}
+            style={{ minHeight: "200px" }}
+            // formats={formats}
+            value={content}
+            className="entry-content col-span-2 p-8 only-of-type:"
+            modules={modules}
+            onChange={setContent}
+        />
     );
 };
-
 export default TextEditor;

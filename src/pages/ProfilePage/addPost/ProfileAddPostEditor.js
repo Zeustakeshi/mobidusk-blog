@@ -4,14 +4,7 @@ import TextEditor from "../../../component/TextEditor";
 
 const ProfileAddPostEditor = () => {
     const [field, , helper] = useField("content");
-
-    return (
-        <TextEditor
-            className="col-span-2 p-8"
-            setContent={helper.setValue}
-            content={field.value}
-        />
-    );
+    return <TextEditor content={field.value} setContent={helper.setValue} />;
 };
 
 export default ProfileAddPostEditor;

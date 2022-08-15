@@ -1,7 +1,7 @@
 import { ErrorMessage, Field } from "formik";
-import { forwardRef, useState } from "react";
-import { IconEye } from "../icons";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { IconEye } from "../icons";
 
 const InputField = ({
     label,

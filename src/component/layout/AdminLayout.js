@@ -1,6 +1,5 @@
 import React from "react";
-import { IconLogOut, IconPosts, IconProfile } from "../icons";
-import Header from "./Header";
+import { IconPosts, IconProfile } from "../icons";
 import SideBar from "./SideBar";
 
 const sideBarNavigates = [

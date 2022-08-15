@@ -1,7 +1,7 @@
-import React, { memo } from "react";
-import { Formik, Form as FormFormik } from "formik";
-import Button from "../Button";
+import { Form as FormFormik, Formik } from "formik";
 import PropTypes from "prop-types";
+import React from "react";
+import Button from "../Button";
 
 const Form = ({
     className = "",

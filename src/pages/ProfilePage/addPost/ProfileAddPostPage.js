@@ -119,7 +119,7 @@ const ProfileAddPostPage = () => {
                     <div className="flex flex-col gap-5 p-[10px] w-full">
                         <ProfileAddPostCategories name="categories" />
                     </div>
-                    <ProfileAddPostEditor></ProfileAddPostEditor>
+                    <ProfileAddPostEditor />
                     <Field.Checkbox
                         name="isPublic"
                         positonCheckbox="right"

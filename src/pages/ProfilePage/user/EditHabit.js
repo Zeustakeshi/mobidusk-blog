@@ -1,14 +1,12 @@
-import { useField } from "formik";
-import React, { useRef, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import Button from "../../../component/Button";
 import { IconCloseCircle } from "../../../component/icons";
 import Input from "../../../component/Input/Input";
 import { useProfileUser } from "../../../context/prodfileUserContext";
-import useClickOutside from "../../../hooks/useClickOutside";
-import Button from "../../../component/Button";
-import { toast } from "react-toastify";
-import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase-app/firebase-config";
-import { useEffect } from "react";
+import useClickOutside from "../../../hooks/useClickOutside";
 
 const EditHabit = () => {
     const { profileUser } = useProfileUser();

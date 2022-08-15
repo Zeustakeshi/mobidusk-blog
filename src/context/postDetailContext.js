@@ -16,7 +16,7 @@ const PostDetailProvider = (props) => {
             setPostInfo(docSnap.data());
         };
         fetchPostData();
-    }, []);
+    }, [postId]);
 
     if (!postId) return <NotFoundPage />;
 

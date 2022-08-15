@@ -12,7 +12,7 @@ const ManagerPostInfo = () => {
             <div className=" flex flex-col justify-start items-start max-w-[300px] gap-2 py-2">
                 <h4
                     className="content-overflow-limitline font-semibold text-xl"
-                    style={{ ["--line"]: 1 }}
+                    style={{ "--line": 1 }}
                 >
                     {post.title}
                 </h4>

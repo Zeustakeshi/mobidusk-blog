@@ -1,10 +1,9 @@
 import { deleteDoc, doc } from "firebase/firestore";
-import { deleteObject, getStorage, ref } from "firebase/storage";
 import React from "react";
 import { toast } from "react-toastify";
+import { IconTrash } from "../../../component/icons";
 import { useManagerPostItem } from "../../../context/managerPostItemContext";
 import { db } from "../../../firebase-app/firebase-config";
-import { IconTrash } from "../../../component/icons";
 import useFIrebaseImage from "../../../hooks/useFirebaseImage";
 
 const ActionDeletePost = () => {

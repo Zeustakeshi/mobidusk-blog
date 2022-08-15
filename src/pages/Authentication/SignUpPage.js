@@ -24,7 +24,7 @@ const SignUpPage = () => {
             navigate("/");
         }
         document.title = "Register";
-    }, []);
+    }, [navigate, userInfo]);
     const handleSubmit = async (values, action) => {
         await toast.promise(
             async () => {

@@ -104,6 +104,10 @@ a {
     visibility: hidden;
 }
 
+.entry-content {
+    width: 100%;
+}
+
 .entry-content h1,
 .entry-content .ql-editor h1 {
     padding: 25px 0;
@@ -150,10 +154,36 @@ a {
     color: #292d32;
 }
 
+.entry-content a,
+.entry-content .ql-editor a {
+    transition: all 0.2s linear;
+    color: #289ba1;
+}
+
+.entry-content a:hover,
+.entry-content .ql-editor a:hover {
+    color: #2ebac1;
+}
+
+.entry-content blockquote,
+.entry-content .ql-editor blockquote {
+    font-weight: 500;
+    font-size: 22px;
+}
+
 .entry-content img,
 .entry-content .ql-editor img {
     width: 100%;
-    max-width: 820px;
-    margin: 32px auto;
+    max-width: 90%;
+    margin: 40px auto;
     border-radius: 20px;
+    height: auto;
+}
+.entry-content iframe,
+.ql-editor .ql-video {
+    aspect-ratio: 16/9;
+    width: 100%;
+    max-width: 90%;
+    border-radius: 10px;
+    margin: 0 auto;
 }

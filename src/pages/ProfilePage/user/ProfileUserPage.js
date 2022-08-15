@@ -1,14 +1,6 @@
-import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Form } from "../../../component/form";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
-import { useAuth } from "../../../context/authContext";
 import { ProfileUserProvider } from "../../../context/prodfileUserContext";
-import { db } from "../../../firebase-app/firebase-config";
-import useFIrebaseImage from "../../../hooks/useFirebaseImage";
 import EditAvatar from "./EditAvatar";
 import EditHabit from "./EditHabit";
 import EditName from "./EditName";

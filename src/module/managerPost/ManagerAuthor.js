@@ -14,7 +14,7 @@ const ManagerAuthor = () => {
             setAuthorName(docSnap.data().fullName);
         };
         fetchAuthorData();
-    }, []);
+    }, [post.authorID]);
     return (
         <div className="content-overflow-one-line text-gray-500 font-medium">
             <NavLink
