@@ -47,14 +47,14 @@ const ProfileLayout = ({ children, title, button }) => {
     useEffect(() => {
         document.title = "Profile";
     }, []);
-    // useEffect(() => {
-    //     if (!userInfo?.uid) {
-    //         navigate("/sign-in");
-    //     }
-    // }, [userInfo]);
+    useEffect(() => {
+        if (!userInfo?.uid) {
+            navigate("/sign-in");
+        }
+    }, [userInfo]);
 
     return (
-        <div className="page-container relative pt-[150px]">
+        <div className="page-container relative pt-[150px] mb-[200px]">
             <Header headerTags={headerTags} headerRightItem={button} />
             <div className="flex">
                 <div className="relative  pl-[350px] w-full h-full">

@@ -14,13 +14,13 @@ const DetailHeading = () => {
             </div>
             <div className="flex flex-col justify-start items-start ">
                 <PostTitle
-                    className="text-secondary font-semibold text-4xl mb-[20px]"
+                    className="text-secondary font-semibold text-4xl mb-3"
                     limitLine={6}
                 >
                     {postInfo.title}
                 </PostTitle>
                 {postInfo.categories.length > 0 && (
-                    <div className="flex gap-3 my-5 flex-wrap">
+                    <div className="flex gap-3 mt-2 mb-5 flex-wrap">
                         {postInfo.categories.slice(0, 10).map((category) => (
                             <PostCategory
                                 className="mb-[10px]"
@@ -36,9 +36,8 @@ const DetailHeading = () => {
                     time={new Date(
                         postInfo.time.seconds * 1000
                     ).toLocaleDateString("Vi-vi")}
-                    authorName={postInfo.author.name}
                     className="text-base font-semibold"
-                    to={postInfo.author.id}
+                    authorID={postInfo.authorID}
                 />
             </div>
         </div>

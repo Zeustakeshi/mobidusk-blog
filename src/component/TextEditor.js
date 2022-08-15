@@ -22,7 +22,7 @@ Quill.register("modules/imageUploader", ImageUploader);
 //     "image",
 //     "imageBlot",
 // ];
-const TextEditor = ({ content, setContent }) => {
+const TextEditor = ({ content, setContent, ...props }) => {
     const reactQuillRef = useRef();
     const modules = useMemo(() => {
         return {
@@ -66,9 +66,10 @@ const TextEditor = ({ content, setContent }) => {
             style={{ minHeight: "200px" }}
             // formats={formats}
             value={content}
-            className="entry-content col-span-2 p-8 only-of-type:"
+            className="entry-content col-span-2 p-8 min-h-[300px]"
             modules={modules}
             onChange={setContent}
+            {...props}
         />
     );
 };

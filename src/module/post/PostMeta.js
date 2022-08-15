@@ -1,13 +1,27 @@
+import { doc, getDoc } from "firebase/firestore";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { db } from "../../firebase-app/firebase-config";
 
 const PostMeta = ({
     time,
-    authorName,
+    authorID,
     className = "text-base font-medium ",
-    to,
     color,
 }) => {
+    const [authorName, setAuthorName] = useState();
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            const authorRef = doc(db, "users", authorID);
+            const docSnap = await getDoc(authorRef);
+            setAuthorName(docSnap.data()?.fullName);
+        };
+        if (!authorID) return;
+        fetchAuthor();
+    }, []);
+    if (!authorID || !authorName) return;
     return (
         <div
             style={
@@ -24,7 +38,7 @@ const PostMeta = ({
                 }}
                 className="p-[2px] rounded-full inline-block"
             ></span>
-            <NavLink to={to ? `/user/${to}` : "/"}>{authorName}</NavLink>
+            <NavLink to={`/user/${authorID}`}>{authorName}</NavLink>
         </div>
     );
 };

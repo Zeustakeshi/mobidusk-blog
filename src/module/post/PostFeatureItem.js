@@ -23,10 +23,9 @@ const PostFeatureItem = ({ post }) => {
                         time={new Date(
                             post.time.seconds * 1000
                         ).toLocaleDateString("Vi-vi")}
-                        authorName={post.author.name}
                         className="text-base font-semibold ml-auto"
                         color="#d1cece"
-                        to={post.author.id}
+                        authorID={post.authorID}
                     />
                 </div>
                 <PostTitle

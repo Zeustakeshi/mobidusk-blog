@@ -8,10 +8,10 @@ const ManagerPostContext = createContext();
 const ManagerPostProvider = ({ currentUser, managerField, ...props }) => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        if (!currentUser.id) return;
+        if (!currentUser) return;
         const postsRef = collection(db, "posts");
         const q = currentUser
-            ? query(postsRef, where("author", "==", currentUser))
+            ? query(postsRef, where("authorID", "==", currentUser))
             : query(postsRef, where("isPublic", "==", true));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const results = [];

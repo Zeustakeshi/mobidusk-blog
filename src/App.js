@@ -10,6 +10,9 @@ const HomePage = lazy(() => import("./pages/Home/HomePage"));
 const ProfileAddPostPage = lazy(() =>
     import("./pages/ProfilePage/addPost/ProfileAddPostPage")
 );
+const ProfileUpdatePostPage = lazy(() =>
+    import("./pages/ProfilePage/updatePost/ProfileUpdatePostPage")
+);
 const ProfileDashboardPage = lazy(() =>
     import("./pages/ProfilePage/dashboard/ProfileDashboardPage")
 );
@@ -44,7 +47,11 @@ function App() {
                         <Route path="/post" element={<ProfilePostPage />} />
                         <Route
                             element={<ProfileAddPostPage />}
-                            path="/post/add-post"
+                            path="/post/add"
+                        />
+                        <Route
+                            element={<ProfileUpdatePostPage />}
+                            path="/post/update/:postID"
                         />
                         <Route path="/user" element={<ProfileUserPage />} />
                         <Route

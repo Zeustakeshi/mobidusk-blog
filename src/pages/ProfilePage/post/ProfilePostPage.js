@@ -17,7 +17,7 @@ const ProfilePostPage = () => {
                 <Button
                     type="button"
                     className="max-w-[180px] text-xl h-[60px]"
-                    to="/post/add-post"
+                    to="/post/add"
                 >
                     New post
                 </Button>
@@ -35,12 +35,8 @@ const ProfilePostPage = () => {
             </div>
             {userInfo && (
                 <ManagerPost
-                    currentUser={{
-                        id: userInfo.uid,
-                        name: userInfo.displayName,
-                        avatar: userInfo.photoURL,
-                    }}
                     managerField={managerField}
+                    currentUser={userInfo.uid}
                 />
             )}
         </ProfileLayout>

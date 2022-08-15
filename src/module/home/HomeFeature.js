@@ -13,25 +13,6 @@ import { db } from "../../firebase-app/firebase-config";
 const HomeFeature = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        // const fetchPostData = async () => {
-        //     const postsRef = collection(db, "posts");
-        // const q = query(
-        //     postsRef,
-        //     where("isFeature", "==", true),
-        //     where("status", "==", "approve"),
-        //     limit(3)
-        // );
-        //     const querySnapshot = await getDocs(q);
-        //     const results = [];
-        //     querySnapshot.forEach((doc) => {
-        //         results.push({
-        //             id: doc.id,
-        //             ...doc.data(),
-        //         });
-        //     });
-        //     setPosts(results);
-        // };
-        // fetchPostData();
         const postsRef = collection(db, "posts");
         const q = query(
             postsRef,
@@ -53,6 +34,7 @@ const HomeFeature = () => {
 
         return unsubscribe;
     }, []);
+
     if (posts.length <= 0) return null;
     return (
         <div className="w-full">

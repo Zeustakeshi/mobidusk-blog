@@ -2,6 +2,7 @@ import React from "react";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
 import { ProfileUserProvider } from "../../../context/prodfileUserContext";
 import EditAvatar from "./EditAvatar";
+import EditDescription from "./EditDescription";
 import EditHabit from "./EditHabit";
 import EditName from "./EditName";
 
@@ -21,6 +22,8 @@ const ProfileUserPage = () => {
                     <EditName />
 
                     <EditHabit />
+
+                    <EditDescription />
                 </div>
             </ProfileUserProvider>
         </ProfileLayout>

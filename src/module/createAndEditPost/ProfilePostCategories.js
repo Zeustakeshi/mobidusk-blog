@@ -1,29 +1,27 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useField } from "formik";
 import React, { useState, useEffect } from "react";
-import { Dropdown, DropdownField } from "../../../component/dropdown";
-import { Field } from "../../../component/form";
-import { db } from "../../../firebase-app/firebase-config";
+import { Dropdown, DropdownField } from "../../component/dropdown";
+import { Field } from "../../component/form";
+import { db } from "../../firebase-app/firebase-config";
 
-const ProfileAddPostCategories = ({ name }) => {
+const ProfilePostCategories = ({ name }) => {
     const [field] = useField(name);
-    const [categories, setCategories] = useState([]);
-    useEffect(() => {
-        const getCategories = async () => {
-            const categoriesRef = collection(db, "categories");
-            const q = query(categoriesRef, orderBy("name"));
-            const querySnapshot = await getDocs(q);
-            const result = [];
-            querySnapshot.forEach((doc) => {
-                result.push({
-                    id: doc.id,
-                    ...doc.data(),
-                });
-            });
-            setCategories(result);
-        };
-        getCategories();
-    }, []);
+    const categories = [
+        "font-end",
+        "back-end",
+        "công nghệ",
+        "kiến thức",
+        "lập trình",
+        "nghệ thuật",
+        "văn hóa",
+        "phong cảnh",
+        "kĩ năng sống",
+        "thú cưng",
+        "thiên nhiên",
+        "tâm sự",
+    ];
+
     return (
         <>
             <div className="font-semibold text-[22px] text-black">Category</div>
@@ -33,7 +31,7 @@ const ProfileAddPostCategories = ({ name }) => {
                     {categories?.length > 0 &&
                         categories.map((category) => (
                             <DropdownField.Item
-                                key={category.id}
+                                key={category}
                                 clickCloseDropDown={false}
                                 clickActiveLabel={false}
                                 className="p-0"
@@ -41,13 +39,11 @@ const ProfileAddPostCategories = ({ name }) => {
                                 <Field.Checkbox
                                     name="categories"
                                     type="secondary"
-                                    value={JSON.stringify(category)}
+                                    value={category}
                                     className="w-full p-3 gap-10"
                                     size={20}
                                 >
-                                    <div className="w-full ">
-                                        {category.name}
-                                    </div>
+                                    <div className="w-full ">{category}</div>
                                 </Field.Checkbox>
                             </DropdownField.Item>
                         ))}
@@ -55,13 +51,13 @@ const ProfileAddPostCategories = ({ name }) => {
             </Dropdown>
             <div className="grid grid-cols-3 gap-3">
                 {field.value &&
-                    field.value.slice(0, 6).map((catefory) => {
+                    field.value.slice(0, 6).map((category) => {
                         return (
                             <span
-                                key={catefory}
+                                key={category}
                                 className="bg-green-bright text-secondary font-semibold rounded-xl p-2 text-center"
                             >
-                                {JSON.parse(catefory).name}
+                                {category}
                             </span>
                         );
                     })}
@@ -70,4 +66,4 @@ const ProfileAddPostCategories = ({ name }) => {
     );
 };
 
-export default ProfileAddPostCategories;
+export default ProfilePostCategories;

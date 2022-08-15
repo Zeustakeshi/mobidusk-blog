@@ -8,14 +8,15 @@ import { toast } from "react-toastify";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase-app/firebase-config";
 import { useAuth } from "../../../context/authContext";
-import ProfileAddPostCategories from "./ProfileAddPostCategories";
-import ProfileAddPostEditor from "./ProfileAddPostEditor";
+import ProfilePostCategories from "../../../module/createAndEditPost/ProfilePostCategories";
+import ProfilePostEditor from "../../../module/createAndEditPost/ProfilePostEditor";
+import slugify from "slugify";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
     title: "",
     image: "",
-    categories: [],
+    categories: ["font-end"],
     isPublic: true,
     content: "",
 };
@@ -64,13 +65,18 @@ const ProfileAddPostPage = () => {
                                     ...values,
                                     searchValue: values.title.toLowerCase(),
                                     status: "approve",
-                                    author: {
-                                        name: userInfo.displayName,
-                                        id: userInfo.uid,
-                                        avatar: userInfo.photoURL,
-                                    },
+
+                                    authorID: userInfo.uid,
                                     categories: values.categories.map(
-                                        (category) => JSON.parse(category)
+                                        (category, index) => {
+                                            return {
+                                                id: index,
+                                                name: category,
+                                                slug: slugify(category, {
+                                                    lower: true,
+                                                }),
+                                            };
+                                        }
                                     ),
                                     time: serverTimestamp(),
                                 });
@@ -117,9 +123,9 @@ const ProfileAddPostPage = () => {
                         />
                     </div>
                     <div className="flex flex-col gap-5 p-[10px] w-full">
-                        <ProfileAddPostCategories name="categories" />
+                        <ProfilePostCategories name="categories" />
                     </div>
-                    <ProfileAddPostEditor />
+                    <ProfilePostEditor />
                     <Field.Checkbox
                         name="isPublic"
                         positonCheckbox="right"

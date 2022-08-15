@@ -24,6 +24,7 @@ const ProfileUserProvider = (props) => {
                 avatar: result.avatar,
                 name: result.fullName,
                 habits: result.habits,
+                description: result.description,
                 uid: userInfo.uid,
             });
         });
