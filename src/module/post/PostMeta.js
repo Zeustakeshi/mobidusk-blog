@@ -29,7 +29,7 @@ const PostMeta = ({
                     color: color,
                 }
             }
-            className={` text-[#6B6B6B] flex justify-center items-center gap-2 ${className}`}
+            className={` text-gray6B flex justify-center items-center gap-1 md:gap-2 ${className}`}
         >
             <span>{time}</span>
             <span

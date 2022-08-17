@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 
 const PostCategory = ({ children, className = "", type = "primary", to }) => {
     return (
-        <div className={`text-sm font-semibold mb-[10px] ${className} `}>
+        <div
+            className={`text-xs md:text-sm font-semibold mb-[10px] ${className} `}
+        >
             <NavLink
                 to={to ? `/category/${to}` : "/"}
-                className={`block px-[10px] py-[4px] rounded-[12px] text-gray6B ${
+                className={`block px-2 py-1 md:px-[10px] md:py-[4px] rounded-[12px] text-gray6B ${
                     type === "primary" ? "bg-[#F3EDFF] " : "bg-white"
                 }`}
             >

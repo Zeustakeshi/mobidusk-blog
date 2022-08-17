@@ -10,14 +10,18 @@ const PostDetailProvider = (props) => {
     const { postId } = useParams();
     const [postInfo, setPostInfo] = useState({});
     useEffect(() => {
-        const fetchPostData = async () => {
+        const fetchPost = async () => {
             const docRef = doc(db, "posts", postId);
             const docSnap = await getDoc(docRef);
-            setPostInfo(docSnap.data());
+            if (!docSnap.data()) return;
+            setPostInfo({
+                id: postId,
+                ...docSnap.data(),
+            });
         };
-        fetchPostData();
-    }, [postId]);
 
+        fetchPost();
+    }, [postId]);
     if (!postId) return <NotFoundPage />;
 
     if (Object.keys(postInfo).length === 0) return null;

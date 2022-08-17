@@ -5,12 +5,14 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import { IconPencil } from "../../../component/icons";
 import Input from "../../../component/Input/Input";
+import { useApp } from "../../../context/appContext";
 import { useProfileUser } from "../../../context/prodfileUserContext";
 import { db } from "../../../firebase-app/firebase-config";
 import useClickOutside from "../../../hooks/useClickOutside";
 
 const EditName = () => {
     const { profileUser } = useProfileUser();
+    const { isMobile } = useApp();
 
     const [type, setType] = useState("div");
     const [value, setValue] = useState(profileUser.name);
@@ -55,7 +57,7 @@ const EditName = () => {
         <div className="relative  flex items-center justify-center ">
             {type === "div" ? (
                 <div className="group relative flex justify-center items-center gap-[44px] w-full">
-                    <div className="text-2xl text-gray-600 font-medium p-3 pr-0 max-w-[500px] content-overflow-one-line transition-all">
+                    <div className="text-xl md:text-2xl text-gray-600 font-medium p-3 pr-0 max-w-[500px] content-overflow-one-line transition-all">
                         {value.trim() || profileUser.name}
                     </div>
 
@@ -63,7 +65,7 @@ const EditName = () => {
                         onClick={() => setType("input")}
                         className="absolute top-[50%] -translate-y-2/4 right-0 translate-x-full  p-3 transition-all cursor-pointer"
                     >
-                        <IconPencil />
+                        <IconPencil size={isMobile ? 15 : 20} />
                     </span>
 
                     {/* {value.trim() !== "" &&
@@ -84,7 +86,7 @@ const EditName = () => {
                         name="name"
                         placeholder="Enter your new name"
                         type="text"
-                        inputClassName="px-4 py-3 text-lg"
+                        inputClassName="px-3 py-2 md:px-4 md:py-3 md:text-lg"
                         onChange={(e) => setValue(e.target.value)}
                         value={value}
                     />

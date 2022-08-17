@@ -24,11 +24,11 @@ const InputField = ({
     const hasIcon = !!Icon || isPassword;
     return (
         <div
-            className={`flex flex-col gap-2 p-[10px] w-full ${wrapperClassName}`}
+            className={`flex flex-col gap-2 p-2 md:p-3 w-full ${wrapperClassName}`}
         >
             {label && (
                 <label
-                    className={`font-semibold text-[20px] text-black ${labelClassName}`}
+                    className={` text-base font-semibold md:text-xl text-black ${labelClassName}`}
                     htmlFor={id || name}
                 >
                     {label}
@@ -46,7 +46,7 @@ const InputField = ({
                     name={name}
                     id={id || name}
                     placeholder={placeholder}
-                    className={`w-full px-[25px] py-4 rounded-lg border outline-none ${
+                    className={`w-full px-4 py-3 md:px-[25px] md:py-4 rounded-lg border outline-none ${
                         !hasIcon
                             ? "border-[#999999] focus:border-[#00B4AA]"
                             : "border-none  pr-2"
@@ -63,14 +63,14 @@ const InputField = ({
                                 handleClickIcon();
                             }
                         }}
-                        className={`p-4 bg-transparent flex justify-center items-center text-[#C4C4C4] cursor-pointer transition-all ${iconClassName}`}
+                        className={`p-3 md:p-4 bg-transparent flex justify-center items-center text-[#C4C4C4] cursor-pointer transition-all ${iconClassName}`}
                     >
                         {isPassword ? <IconEye open={!showPassword} /> : Icon}
                     </span>
                 )}
             </div>
             <div
-                className={`ml-2 text-red-500 text-sm font-semibold ${errorClassName}`}
+                className={`ml-2 text-red-500 text-xs md:text-sm font-semibold ${errorClassName}`}
             >
                 <ErrorMessage name={name}></ErrorMessage>
             </div>

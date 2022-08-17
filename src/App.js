@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AppProvider } from "./context/appContext";
 import { AuthProvider } from "./context/authContext";
 
 const SignInPage = lazy(() => import("./pages/Authentication/SignInPage"));
@@ -33,38 +34,40 @@ function App() {
         <div className="App">
             <ToastContainer autoClose={2000} />
             <Suspense fallback={<></>}>
-                <AuthProvider>
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/blog" element={<HomePage />} />
-                        <Route path="/contact" element={<HomePage />} />
-                        <Route path="/sign-up" element={<SignUpPage />} />
-                        <Route path="/sign-in" element={<SignInPage />} />
-                        <Route
-                            path="/post/:postId"
-                            element={<PostDetailPage />}
-                        />
-                        <Route path="/post" element={<ProfilePostPage />} />
-                        <Route
-                            element={<ProfileAddPostPage />}
-                            path="/post/add"
-                        />
-                        <Route
-                            element={<ProfileUpdatePostPage />}
-                            path="/post/update/:postID"
-                        />
-                        <Route path="/user" element={<ProfileUserPage />} />
-                        <Route
-                            path="/user/:userID"
-                            element={<ProfileUserViewPage />}
-                        />
-                        <Route
-                            path="/dashboard"
-                            element={<ProfileDashboardPage />}
-                        />
-                        <Route path="*" element={<NotFoundPage />} />
-                    </Routes>
-                </AuthProvider>
+                <AppProvider>
+                    <AuthProvider>
+                        <Routes>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/blog" element={<HomePage />} />
+                            <Route path="/contact" element={<HomePage />} />
+                            <Route
+                                path="/post/:postId"
+                                element={<PostDetailPage />}
+                            />
+                            <Route path="/post" element={<ProfilePostPage />} />
+                            <Route
+                                element={<ProfileAddPostPage />}
+                                path="/post/add"
+                            />
+                            <Route
+                                element={<ProfileUpdatePostPage />}
+                                path="/post/update/:postID"
+                            />
+                            <Route path="/user" element={<ProfileUserPage />} />
+                            <Route
+                                path="/user/:userID"
+                                element={<ProfileUserViewPage />}
+                            />
+                            <Route
+                                path="/dashboard"
+                                element={<ProfileDashboardPage />}
+                            />
+                            <Route path="*" element={<NotFoundPage />} />
+                            <Route path="/sign-up" element={<SignUpPage />} />
+                            <Route path="/sign-in" element={<SignInPage />} />
+                        </Routes>
+                    </AuthProvider>
+                </AppProvider>
             </Suspense>
         </div>
     );

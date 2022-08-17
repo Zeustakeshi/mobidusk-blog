@@ -9,6 +9,7 @@ import { doc, setDoc } from "firebase/firestore";
 import AuthenticationPage from "./AuthenticationPage";
 import * as Yup from "yup";
 import { useAuth } from "../../context/authContext";
+import { useApp } from "../../context/appContext";
 
 const initialFormValues = {
     email: "",
@@ -19,6 +20,7 @@ const initialFormValues = {
 const SignUpPage = () => {
     const navigate = useNavigate();
     const { userInfo } = useAuth();
+    const { isMobile } = useApp();
     useEffect(() => {
         if (userInfo) {
             navigate("/");
@@ -67,50 +69,54 @@ const SignUpPage = () => {
     return (
         <AuthenticationPage>
             <Form
-                name="Sign Up"
+                name="Đăng kí"
                 initialValues={initialFormValues}
                 onSubmit={handleSubmit}
                 validationSchema={Yup.object({
                     fullName: Yup.string()
-                        .min(5, "Full name must contain 5 characters")
-                        .max(30, "Full name must be 30 character or less")
-                        .required("Full name is required field"),
+                        .min(5, "Tên phải có ít nhất 5 kí tự")
+                        .max(30, "Tên không được vượt quá 30 kí tự")
+                        .required("Tên không được bỏ trống"),
                     email: Yup.string()
-                        .email("Email must be a valid email")
-                        .required("Email is required field"),
+                        .email("Email không hợp lệ!")
+                        .required("Email không được bỏ trống"),
                     password: Yup.string()
-                        .required("Please Enter your password")
+                        .required("Mật khẩu không được bỏ trống")
                         .matches(
                             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                            "Password must contain 8 characters, one uppercase, one lowercase, one number and one special case Character"
+                            "Mật khẩu hợp lệ bao gồm 8 kí tự, có một kí tự viết hoa, một kí tự viết thường, một số, một kí tự đặc biệt "
                         ),
                 })}
                 footer={
-                    <div className="mt-4 text-slate-500 text-base font-semibold">
-                        You are a member?{" "}
-                        <NavLink to="/sign-in" className="text-lg text-primary">
-                            Login Now
+                    <div className="mt-2 md:mt-4 text-slate-500 md:text-base text-xs font-semibold">
+                        <span>Bạn đã là một thành viên? </span>
+                        <NavLink
+                            to="/sign-in"
+                            className="text-sm md:text-lg text-primary"
+                        >
+                            Đăng nhập ngay
                         </NavLink>
                     </div>
                 }
             >
                 <Field.Input
-                    label="Full name"
+                    label="Tên"
                     name="fullName"
                     type="text"
-                    placeholder="Please enter your full name"
+                    placeholder="Vui lòng nhập tên của bạn"
+                    inputClassName=""
                 />
                 <Field.Input
-                    label="Email address"
+                    label="Email"
                     name="email"
                     type="email"
-                    placeholder="Please enter your email"
+                    placeholder="Vui lòng nhập email"
                 />
                 <Field.Input
-                    label="Password"
+                    label="Mật khẩu"
                     name="password"
                     type="password"
-                    placeholder="Please enter your password"
+                    placeholder="Vui lòng nhập mật khẩu"
                 />
             </Form>
         </AuthenticationPage>

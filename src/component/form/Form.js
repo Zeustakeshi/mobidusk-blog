@@ -24,14 +24,14 @@ const Form = ({
                     <FormFormik
                         className={`${
                             className ||
-                            "max-w-[650px] w-full mx-auto flex flex-col gap-3 p-3 justify-center items-center"
+                            "md:max-w-[650px] w-full mx-auto flex flex-col gap-2 md:gap-3 md:p-3 justify-center items-center"
                         }`}
                     >
                         {children}
                         <Button
                             isLoading={formik.isSubmitting}
                             type="submit"
-                            className={`h-[70px] max-w-[350px] mt-5 ${buttonSubmitClassName}`}
+                            className={` h-[50px] max-w-none mt-3  md:h-[70px] md:max-w-[350px] md:mt-5 ${buttonSubmitClassName}`}
                         >
                             {name}
                         </Button>

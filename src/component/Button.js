@@ -31,7 +31,7 @@ const Button = ({
             break;
     }
 
-    const nodeClassName = `flex justify-center items-center ${btnStyle} rounded-lg px-5 py-[18px] w-full shadow-lg text-lg font-semibold hover:shadow-md transition-all outline-none ${
+    const nodeClassName = `flex justify-center items-center ${btnStyle} rounded-lg md:px-5 md:py-[18px] w-full shadow-lg md:text-lg font-semibold hover:shadow-md transition-all outline-none ${
         isLoading || disabled
             ? "bg-opacity-80 select-none cursor-default pointer-events-none"
             : ""

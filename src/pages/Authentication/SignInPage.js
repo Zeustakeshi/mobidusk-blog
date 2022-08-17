@@ -127,9 +127,12 @@ const SignInPage = () => {
                         ),
                 })}
                 footer={
-                    <div className="mt-4 text-slate-500 text-base font-semibold">
+                    <div className="mt-2 md:mt-4 text-slate-500 md:text-base text-xs font-semibold">
                         {lang.formDirectional.text + " "}
-                        <NavLink to="/sign-up" className="text-lg text-primary">
+                        <NavLink
+                            to="/sign-up"
+                            className="text-sm md:text-lg text-primary"
+                        >
                             {lang.formDirectional.link}
                         </NavLink>
                     </div>

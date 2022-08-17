@@ -9,6 +9,7 @@ function useClickOutside(ref, refControl, handler) {
                 (refControl && refControl.current.contains(event.target))
             )
                 return;
+            // console.log(event.ta);
             handler();
         };
         document.addEventListener("mousedown", listener);

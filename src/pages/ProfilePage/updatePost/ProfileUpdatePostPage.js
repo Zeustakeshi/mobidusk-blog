@@ -13,10 +13,12 @@ import * as Yup from "yup";
 import { Field, Form } from "../../../component/form";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
 import LoadingSpin from "../../../component/LoadingSpin";
+import { useApp } from "../../../context/appContext";
 import { db } from "../../../firebase-app/firebase-config";
 import useFIrebaseImage from "../../../hooks/useFirebaseImage";
 import ProfilePostCategories from "../../../module/createAndEditPost/ProfilePostCategories";
 import ProfilePostEditor from "../../../module/createAndEditPost/ProfilePostEditor";
+import NotFoundPage from "../../Not-found/NotFoundPage";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
@@ -43,6 +45,8 @@ const ProfileUpdatePostPage = () => {
     useEffect(() => {
         document.title = "Update Post";
     }, []);
+    const { isMobile } = useApp();
+    if (isMobile) return <NotFoundPage />;
     return (
         <ProfileLayout title="Update Post">
             {!initialFormValues.title ? (

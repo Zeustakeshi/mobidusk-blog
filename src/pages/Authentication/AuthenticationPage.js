@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Logo from "../../component/Logo";
+import { useApp } from "../../context/appContext";
 
 const AuthenticationPage = ({ children }) => {
+    const { isMobile } = useApp();
     return (
-        <div className="p-8 mb-5">
+        <div className="pt-10 p-5 mb-2 md:p-8 md:mb-5">
             <div className="page-container">
                 <div className="mx-auto mb-5 flex flex-col justify-center items-center">
-                    <Logo size={140}></Logo>
-                    <div className="font-semibold leading-[40px] text-[40px] text-primary mt-4">
+                    <Logo size={isMobile ? 60 : 100}></Logo>
+                    <div className="font-semibold  text-primary text-[26px] mt-4 md:leading-relaxed md:text-[40px]">
                         Mobidusk Blog
                     </div>
                 </div>

@@ -1,5 +1,73 @@
 import React from "react";
 
+export const IconMenu = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+        >
+            <path
+                fillRule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clipRule="evenodd"
+            />
+        </svg>
+    );
+};
+
+export const IconHeart = ({ fill }) => {
+    return fill ? (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-8 w-8"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+        >
+            <path
+                fillRule="evenodd"
+                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                clipRule="evenodd"
+            />
+        </svg>
+    ) : (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+        </svg>
+    );
+};
+
+export const IconClose = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+            />
+        </svg>
+    );
+};
+
 export const IconCloseCircle = ({ fill }) => {
     return fill ? (
         <svg
@@ -17,7 +85,7 @@ export const IconCloseCircle = ({ fill }) => {
     ) : (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -32,11 +100,12 @@ export const IconCloseCircle = ({ fill }) => {
     );
 };
 
-export const IconPencil = () => {
+export const IconPencil = ({ size = 20 }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            width={size}
+            height={size}
             viewBox="0 0 20 20"
             fill="currentColor"
         >
@@ -120,12 +189,12 @@ export const IconEye = ({ open }) => {
     );
 };
 
-export const IconEyeOpen = () => {
+export const IconEyeOpen = ({ size }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width={size}
+            height={size}
             viewBox="0 0 24 24"
             fill="currentColor"
         >
@@ -250,11 +319,11 @@ export const IconProfile = () => {
     );
 };
 
-export const IconLogOut = () => {
+export const IconLogOut = ({ size = 24 }) => {
     return (
         <svg
-            width="24"
-            height="24"
+            width={size}
+            height={size}
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -300,12 +369,12 @@ export const IconLightDarkTheme = () => {
     );
 };
 
-export const IconEditWrite = () => {
+export const IconEditWrite = ({ size }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width={size}
+            height={size}
             viewBox="0 0 24 24"
             fill="currentColor"
         >
@@ -314,11 +383,12 @@ export const IconEditWrite = () => {
     );
 };
 
-export const IconTrash = () => {
+export const IconTrash = ({ size = 24 }) => {
     return (
         <svg
-            width="24"
-            height="24"
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
             clipRule="evenodd"

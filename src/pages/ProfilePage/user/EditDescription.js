@@ -36,34 +36,24 @@ const EditDescription = () => {
         );
     };
 
-    const handleBlur = () => {
-        if (content === "" || content.trim() === initialValue.trim()) return;
-        const confirm = window.confirm("Bạn có muốn lưu thay đổi không ?");
-        if (confirm) {
-            handleUpdateDescription();
-        } else {
-            setContent(initialValue);
-        }
-    };
-
     return (
-        <div className="mt-5">
+        <div className="mt-10">
             <TextEditor
                 content={content}
                 setContent={setContent}
-                onBlur={handleBlur}
+                className="w-full"
             />
             {content.trim() !== initialValue.trim() && (
-                <div className="flex justify-center items-center gap-5 bg-white mt-10">
+                <div className="flex justify-center items-center gap-5 bg-white mt-4 md:mt-10">
                     <Button
-                        className="max-w-[46px] max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3 bg-white"
+                        className="max-w-[37px] md:max-w-[46px] max-h-[37px] md:max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3 bg-white"
                         kind="secondary"
                         onClick={handleUpdateDescription}
                     >
                         ✓
                     </Button>
                     <Button
-                        className="max-w-[46px] max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3 text-[tomato] bg-white"
+                        className="max-w-[37px] md:max-w-[46px] max-h-[37px] md:max-h-[46px] text-base px-3 py-3 shadow-style-3 hover:shadow-style-3 text-[tomato] bg-white"
                         kind="secondary"
                         onClick={() => setContent(initialValue)}
                     >

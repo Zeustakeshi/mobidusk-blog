@@ -28,7 +28,7 @@ const ProfilePostPage = () => {
                     type="text"
                     name="search"
                     placeholder="Search post ..."
-                    className="max-w-[300px] ml-auto"
+                    className="max-w-full md:max-w-[300px] ml-auto"
                 >
                     <IconSearch />
                 </Input>

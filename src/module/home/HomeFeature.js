@@ -38,8 +38,8 @@ const HomeFeature = () => {
     if (posts.length <= 0) return null;
     return (
         <div className="w-full">
-            <HeadingTitle>Feature</HeadingTitle>
-            <div className="mt-2 grid grid-cols-3 gap-8 w-full text-white">
+            <HeadingTitle>Nổi bật</HeadingTitle>
+            <div className="mt-2 grid md:grid-cols-3 gap-5 md:gap-8 w-full text-white">
                 {posts.map((post) => (
                     <PostFeatureItem key={post.id} post={post} />
                 ))}

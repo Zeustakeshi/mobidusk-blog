@@ -3,12 +3,14 @@ import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { toast } from "react-toastify";
 import ImageUpLoad from "../../../component/imageUpload/ImageUpload";
+import { useApp } from "../../../context/appContext";
 import { useProfileUser } from "../../../context/prodfileUserContext";
 import { auth, db } from "../../../firebase-app/firebase-config";
 import useFIrebaseImage from "../../../hooks/useFirebaseImage";
 
 const EditAvatar = () => {
     const { profileUser } = useProfileUser();
+    const { isMobile } = useApp();
     const { handleUploadImage, handleDeteleImage } = useFIrebaseImage();
     const handleChange = (e) => {
         function getExtension(filename) {
@@ -72,8 +74,8 @@ const EditAvatar = () => {
                 file={profileUser.avatar}
                 className="rounded-full"
                 size={{
-                    width: 180,
-                    height: 180,
+                    width: isMobile ? 100 : 180,
+                    height: isMobile ? 100 : 180,
                 }}
                 handleChange={handleChange}
             />

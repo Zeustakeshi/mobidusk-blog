@@ -11,6 +11,8 @@ import { useAuth } from "../../../context/authContext";
 import ProfilePostCategories from "../../../module/createAndEditPost/ProfilePostCategories";
 import ProfilePostEditor from "../../../module/createAndEditPost/ProfilePostEditor";
 import slugify from "slugify";
+import { useApp } from "../../../context/appContext";
+import NotFoundPage from "../../Not-found/NotFoundPage";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const initialFormValues = {
@@ -24,10 +26,14 @@ const initialFormValues = {
 const ProfileAddPostPage = () => {
     const { handleUploadImage } = useFirebaseImage();
     const { userInfo } = useAuth();
+    const { isMobile } = useApp();
 
     useEffect(() => {
         document.title = "Add New Post";
     }, []);
+
+    if (isMobile) return <NotFoundPage />;
+
     return (
         <ProfileLayout title="Add New Post">
             <Form

@@ -6,10 +6,12 @@ const HeadingTitle = ({
     decorationWidth = 40,
     decorationHeight = 4,
     decorationClassName = "",
+    ...props
 }) => {
     return (
         <div
-            className={`mb-[15px] py-2 relative text-[28px] font-semibold  ${className}`}
+            className={`mb-[15px] py-2 relative text-xl md:text-[28px] font-bold  md:font-semibold  ${className}`}
+            {...props}
         >
             <span
                 className={`absolute bg-[#00D1ED] top-0 left-0 ${decorationClassName}`}

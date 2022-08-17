@@ -4,26 +4,34 @@ import PostMeta from "./PostMeta";
 import PostTitle from "./PostTitle";
 import Image from "../../component/Image";
 
-const PostItem = () => {
+const PostItem = ({ post }) => {
+    if (!post) return;
     return (
         <div>
-            <div className="rounded-[15px] h-[250px] mb-5">
+            <div className="rounded-[15px] h-[250px] mb-2 md:mb-5">
                 <Image
-                    src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                    src={post.image}
                     alt=""
                     className="w-full h-full object-cover rounded-[inherit]"
                     to="/"
                 />
             </div>
-            <div className="flex flex-col gap-3 items-start justify-center">
-                <PostCategory className="mb-[0px]">Kiến thức</PostCategory>
-                <PostTitle limitLine={3} className="font-semibold text-lg">
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
+            <div className="flex flex-col md:gap-3 items-start justify-center">
+                <PostCategory className="mb-[5px] md:mb-[0px] ">
+                    {post.categories[0].name}
+                </PostCategory>
+                <PostTitle
+                    limitLine={3}
+                    className="font-semibold text-base md:text-xl"
+                >
+                    {post.title}
                 </PostTitle>
                 <PostMeta
-                    authorName="Andiez Le"
-                    time="Mar 23"
-                    className="text-sm font-semibold"
+                    time={new Date(post.time.seconds * 1000).toLocaleDateString(
+                        "Vi-vi"
+                    )}
+                    authorID={post.authorID}
+                    className="text-xs md:text-sm font-semibold"
                 />
             </div>
         </div>
