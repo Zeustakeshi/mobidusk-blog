@@ -7,7 +7,7 @@ const PostCategory = ({ children, className = "", type = "primary", to }) => {
             className={`text-xs md:text-sm font-semibold mb-[10px] ${className} `}
         >
             <NavLink
-                to={to ? `/category/${to}` : "/"}
+                to={to ? `/categories/${to}` : "/"}
                 className={`block px-2 py-1 md:px-[10px] md:py-[4px] rounded-[12px] text-gray6B ${
                     type === "primary" ? "bg-[#F3EDFF] " : "bg-white"
                 }`}

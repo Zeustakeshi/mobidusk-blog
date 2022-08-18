@@ -28,7 +28,7 @@ const MainLayout = ({ children }) => {
     const { isMobile } = useApp();
     return (
         <>
-            <div className="page-container relative !pt-[100px] md:!pt-[150px] !mb-[100px]">
+            <div className="page-container relative !pt-[100px] md:!pt-[150px] !mb-[100px] min-h-[100vh]">
                 <Header
                     headerTags={headerTags}
                     headerRightItem={

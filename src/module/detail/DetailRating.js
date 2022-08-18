@@ -34,6 +34,7 @@ const DetailRating = () => {
         const postRef = doc(db, "posts", postInfo.id);
 
         await updateDoc(postRef, {
+            isFeature: like >= 10,
             like: like,
         });
         await updateDoc(userRef, {

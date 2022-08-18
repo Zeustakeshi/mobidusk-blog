@@ -2,7 +2,7 @@ import React from "react";
 
 const HeadingTitle = ({
     children,
-    className = "text-[#3A1097]",
+    className = "",
     decorationWidth = 40,
     decorationHeight = 4,
     decorationClassName = "",
@@ -10,7 +10,7 @@ const HeadingTitle = ({
 }) => {
     return (
         <div
-            className={`mb-[15px] py-2 relative text-xl md:text-[28px] font-bold  md:font-semibold  ${className}`}
+            className={`text-[#3A1097] mb-[15px] py-2 relative text-xl md:text-[28px] font-bold  md:font-semibold  ${className}`}
             {...props}
         >
             <span

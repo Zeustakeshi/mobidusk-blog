@@ -1,8 +1,5 @@
 import React from "react";
 import Button from "../../component/Button";
-import { useApp } from "../../context/appContext";
-import imageNotFound from "../../assets/image/not-found.png";
-import Image from "../../component/Image";
 
 const NotFoundPage = () => {
     return (

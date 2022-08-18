@@ -1,4 +1,5 @@
 import React from "react";
+import slugify from "slugify";
 import Image from "../../component/Image";
 import PostCategory from "./PostCategory";
 import PostMeta from "./PostMeta";
@@ -23,8 +24,12 @@ const PostNewestItem = ({ posts }) => {
                         />
                     </div>
                     <div className="flex flex-col gap-3 justify-start items-start">
-                        <PostCategory type="secondary" className="mb-[0px]">
-                            {post.categories[0].name}
+                        <PostCategory
+                            type="secondary"
+                            className="mb-[0px]"
+                            to={slugify(post.categories[0])}
+                        >
+                            {post.categories[0]}
                         </PostCategory>
                         <PostTitle
                             limitLine={2}

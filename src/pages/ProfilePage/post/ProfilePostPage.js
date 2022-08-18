@@ -6,7 +6,7 @@ import Button from "../../../component/Button";
 import { useAuth } from "../../../context/authContext";
 import ManagerPost from "../../../module/managerPost/ManagerPost";
 
-const managerField = ["id", "post", "public", "feature", "action"];
+const managerField = ["id", "post", "public", "action"];
 
 const ProfilePostPage = () => {
     const { userInfo } = useAuth();

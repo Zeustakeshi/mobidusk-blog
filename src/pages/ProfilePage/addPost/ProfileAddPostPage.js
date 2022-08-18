@@ -10,7 +10,6 @@ import { db } from "../../../firebase-app/firebase-config";
 import { useAuth } from "../../../context/authContext";
 import ProfilePostCategories from "../../../module/createAndEditPost/ProfilePostCategories";
 import ProfilePostEditor from "../../../module/createAndEditPost/ProfilePostEditor";
-import slugify from "slugify";
 import { useApp } from "../../../context/appContext";
 import NotFoundPage from "../../Not-found/NotFoundPage";
 
@@ -74,17 +73,6 @@ const ProfileAddPostPage = () => {
                                     status: "approve",
                                     isFeature: false,
                                     authorID: userInfo.uid,
-                                    categories: values.categories.map(
-                                        (category, index) => {
-                                            return {
-                                                id: index,
-                                                name: category,
-                                                slug: slugify(category, {
-                                                    lower: true,
-                                                }),
-                                            };
-                                        }
-                                    ),
                                     time: serverTimestamp(),
                                 });
                             } catch (error) {

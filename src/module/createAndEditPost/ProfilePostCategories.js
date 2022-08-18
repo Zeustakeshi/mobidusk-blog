@@ -1,27 +1,11 @@
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useField } from "formik";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Dropdown, DropdownField } from "../../component/dropdown";
 import { Field } from "../../component/form";
-import { db } from "../../firebase-app/firebase-config";
+import { categories } from "../../config";
 
 const ProfilePostCategories = ({ name }) => {
     const [field] = useField(name);
-    const categories = [
-        "font-end",
-        "back-end",
-        "công nghệ",
-        "kiến thức",
-        "lập trình",
-        "nghệ thuật",
-        "văn hóa",
-        "phong cảnh",
-        "kĩ năng sống",
-        "thú cưng",
-        "thiên nhiên",
-        "tâm sự",
-    ];
-
     return (
         <>
             <div className="font-semibold text-[22px] text-black">Category</div>

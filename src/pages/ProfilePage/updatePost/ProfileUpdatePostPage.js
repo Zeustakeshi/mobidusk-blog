@@ -34,7 +34,7 @@ const ProfileUpdatePostPage = () => {
             setInitialFormValues({
                 title: result.title,
                 image: result.image,
-                categories: result.categories.map((category) => category.name),
+                categories: result.categories,
                 isPublic: result.isPublic,
                 content: result.content,
             });
@@ -108,17 +108,6 @@ const ProfileUpdatePostPage = () => {
                                     await updateDoc(docRef, {
                                         ...values,
                                         searchValue: values.title.toLowerCase(),
-                                        categories: values.categories.map(
-                                            (category, index) => {
-                                                return {
-                                                    id: index,
-                                                    name: category,
-                                                    slug: slugify(category, {
-                                                        lower: true,
-                                                    }),
-                                                };
-                                            }
-                                        ),
                                         time: serverTimestamp(),
                                     });
                                 } catch (error) {

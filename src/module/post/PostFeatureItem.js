@@ -3,6 +3,7 @@ import PostCategory from "./PostCategory";
 import PostMeta from "./PostMeta";
 import PostTitle from "./PostTitle";
 import Image from "../../component/Image";
+import slugify from "slugify";
 
 const PostFeatureItem = ({ post }) => {
     return (
@@ -15,8 +16,11 @@ const PostFeatureItem = ({ post }) => {
             <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-start items-start p-5 gap-3  bg-slate-800 bg-opacity-60 min-h-[38px]">
                 <div className="flex justify-between items-center w-full">
                     {post.categories[0] && (
-                        <PostCategory className="mb-[0px]">
-                            {post.categories[0].name}
+                        <PostCategory
+                            className="mb-[0px]"
+                            to={slugify(post.categories[0].toLowerCase())}
+                        >
+                            {post.categories[0]}
                         </PostCategory>
                     )}
                     <PostMeta

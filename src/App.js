@@ -28,6 +28,9 @@ const ProfileUserViewPage = lazy(() =>
 );
 const NotFoundPage = lazy(() => import("./pages/Not-found/NotFoundPage"));
 const PostDetailPage = lazy(() => import("./pages/PostDetail/PostDetailPage"));
+const CategoriesDetailPage = lazy(() =>
+    import("./pages/CategoriesDetailPage/CategoriesDetailPage")
+);
 
 function App() {
     return (
@@ -43,6 +46,10 @@ function App() {
                             <Route
                                 path="/post/:postId"
                                 element={<PostDetailPage />}
+                            />
+                            <Route
+                                path="/categories/:categorySlug"
+                                element={<CategoriesDetailPage />}
                             />
                             <Route path="/post" element={<ProfilePostPage />} />
                             <Route

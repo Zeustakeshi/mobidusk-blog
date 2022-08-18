@@ -4,6 +4,7 @@ import PostCategory from "../post/PostCategory";
 import PostTitle from "../post/PostTitle";
 import PostMeta from "../post/PostMeta";
 import { usePostDetail } from "../../context/postDetailContext";
+import slugify from "slugify";
 
 const DetailHeading = () => {
     const { postInfo } = usePostDetail();
@@ -24,10 +25,10 @@ const DetailHeading = () => {
                         {postInfo.categories.slice(0, 10).map((category) => (
                             <PostCategory
                                 className="mb-[10px]"
-                                key={category.id}
-                                to={category.slug}
+                                key={category}
+                                to={slugify(category)}
                             >
-                                {category.name}
+                                {category}
                             </PostCategory>
                         ))}
                     </div>

@@ -35,14 +35,14 @@ const HomeNewestUpdate = () => {
     return (
         <div className="w-full">
             <HeadingTitle>Bài viết Mới nhất</HeadingTitle>
-            {!isMobile && (
+            {!isMobile && posts.length > 2 && (
                 <div className="flex justify-center items-start gap-10 mb-[50px]">
                     <PostNewstLarge post={posts[0]} />
                     <PostNewestItem posts={posts.slice(1, 4)} />
                 </div>
             )}
             <div className="grid md:grid-cols-4 gap-10">
-                {isMobile
+                {isMobile || posts.length <= 2
                     ? posts.map((post) => (
                           <PostItem key={post.id} post={post} />
                       ))
