@@ -64,14 +64,15 @@ const ProfileAddPostPage = () => {
                     toast.promise(
                         async () => {
                             values.image = await handleUploadImage(
-                                values.image
+                                values.image,
+                                `images/${values.title.toLowerCase().trim()}`
                             );
                             try {
                                 await addDoc(collection(db, "posts"), {
                                     ...values,
                                     searchValue: values.title.toLowerCase(),
                                     status: "approve",
-
+                                    isFeature: false,
                                     authorID: userInfo.uid,
                                     categories: values.categories.map(
                                         (category, index) => {

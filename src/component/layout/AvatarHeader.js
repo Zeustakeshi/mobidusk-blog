@@ -42,7 +42,11 @@ const AvatarHeader = () => {
                             onClick={() => setShow(true)}
                         />
                     ) : (
-                        <div className="w-full h-full  flex justify-center items-center font-bold bg-green-bright text-primary">
+                        <div
+                            ref={avatarRef}
+                            onClick={() => setShow(true)}
+                            className="w-full h-full  flex justify-center items-center font-bold bg-green-bright text-primary"
+                        >
                             {userInfo.displayName[0].toUpperCase()}
                         </div>
                     )}

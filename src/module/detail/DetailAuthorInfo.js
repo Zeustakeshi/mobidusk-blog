@@ -24,18 +24,26 @@ const DetailAuthorInfo = () => {
 
     return (
         <div className="w-full max-w-[90%] md:max-w-[70%] h-auto mx-auto flex justify-start items-start md:gap-3 rounded-[20px] bg-[#F8F9FA] shadow-style-3 ">
-            <Image
-                src={author.avatar}
-                className="w-full max-w-[40px] md:max-w-[350px] max-h-[40px] md:max-h-[300px] h-full rounded-full md:rounded-[inherit] border border-transparent border-r-slate-300 "
-                alt=""
-            />
+            {author.avatar && (
+                <Image
+                    src={author.avatar}
+                    className="w-full max-w-[40px] md:max-w-[350px] max-h-[40px] md:max-h-[300px] h-full rounded-full md:rounded-[inherit] border border-transparent border-r-slate-300 "
+                    alt=""
+                />
+            )}
             <div className="p-[30px] flex flex-col justify-start items-start w-full h-full  overflow-hidden">
                 <h3
                     className={` font-semibold text-3xl  mb-[15px]  text-secondary`}
                 >
                     {author.fullName}
                 </h3>
-                <div className="entry-content h-auto p-3 overflow-hidden">
+                <div
+                    className={`${
+                        !author.avatar
+                            ? "border-[3px] border-transparent border-l-primary"
+                            : ""
+                    } entry-content h-auto p-3 overflow-hidden`}
+                >
                     {parse(author.description || "")}
                 </div>
             </div>

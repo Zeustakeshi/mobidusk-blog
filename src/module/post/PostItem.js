@@ -23,6 +23,7 @@ const PostItem = ({ post }) => {
                 <PostTitle
                     limitLine={3}
                     className="font-semibold text-base md:text-xl"
+                    to={post.id}
                 >
                     {post.title}
                 </PostTitle>

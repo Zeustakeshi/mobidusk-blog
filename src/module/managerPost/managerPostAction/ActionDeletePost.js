@@ -19,7 +19,10 @@ const ActionDeletePost = () => {
 
         await toast.promise(
             async () => {
-                handleDeteleImage(post.image, "images");
+                handleDeteleImage(
+                    post.image,
+                    `images/${post.title.toLowerCase().trim()}`
+                );
                 await deleteDoc(doc(db, "posts", post.id));
             },
             {

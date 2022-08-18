@@ -7,11 +7,9 @@ const TableWrapper = ({
     children,
 }) => {
     return (
-        <div
-            className={`md:max-h-[calc(100vh-250px)] max-h-[calc(100vh-150px)] ${className}`}
-        >
+        <div className={`md:max-h-[60vh] max-h-full relative ${className}`}>
             <table className="w-full h-full rounded-lg p-5">
-                <thead className=" bg-slate-100">
+                <thead className=" bg-slate-100 sticky top-[-8px] z-20 shadow-sm">
                     <tr>
                         {fields.map((field) => (
                             <th

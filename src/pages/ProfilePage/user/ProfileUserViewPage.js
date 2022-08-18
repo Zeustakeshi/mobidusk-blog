@@ -61,11 +61,17 @@ const ProfileUserViewPage = () => {
             ) : (
                 <div className="grid md:grid-cols-3 shadow-sm rounded-lg gap-1 md:gap-5 p-5">
                     <div className="max-h-[300px]">
-                        <Image
-                            src={user.avatar}
-                            alt=""
-                            className="object-top "
-                        />
+                        {user.avatar ? (
+                            <Image
+                                src={user.avatar}
+                                alt=""
+                                className="object-top "
+                            />
+                        ) : (
+                            <div className="w-full h-full  flex justify-center items-center font-bold bg-green-bright text-primary text-4xl min-h-[300px]">
+                                {user.fullName[0].toUpperCase()}
+                            </div>
+                        )}
                     </div>
                     <div className="flex flex-col justify-start items-center  md:items-start gap-6 md:col-span-2 p-5">
                         <div className="text-2xl md:text-3xl font-bold text-primary">

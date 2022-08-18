@@ -4,39 +4,42 @@ import PostCategory from "./PostCategory";
 import PostMeta from "./PostMeta";
 import PostTitle from "./PostTitle";
 
-const PostNewestItem = () => {
+const PostNewestItem = ({ posts }) => {
+    if (!posts || posts?.length <= 0) return;
     return (
-        <div className="p-5 bg-[#F3EDFF] rounded-2xl w-full max-w-[550px] grid grid-rows-3 gap-[40px] shadow-style-3">
-            {new Array(3).fill(0).map((item, index) => (
+        <div className="p-5 bg-[#f1edf4] rounded-2xl w-full max-w-[550px] max-h-[640px] grid grid-rows-3 shadow-style-3">
+            {posts?.map((post) => (
                 <div
-                    key={index}
-                    className=" min-h-[168px] w-full grid grid-cols-2 gap-5 "
+                    key={post.id}
+                    className=" min-h-[168px] max-h-full w-full grid grid-cols-2 gap-5 border-[2px] border-transparent border-t-gray-200 first:border-t-transparent pb-5 last:pb-0 pt-5 first:pt-0"
                 >
-                    <div className="w-full h-full rounded-lg ">
+                    <div className="max-h-full rounded-lg overflow-hidden ">
                         <Image
-                            src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-                            alt=""
-                            className=" object-cover rounded-[inherit] "
+                            src={post.image}
+                            alt="post item"
+                            className=" object-cover rounded-[inherit] max-h-full"
                             imgErrorClass="bg-opacity-80"
-                            to="/setup-phong-cuc-chill"
+                            to={`/post/${post.id}`}
                         />
                     </div>
                     <div className="flex flex-col gap-3 justify-start items-start">
                         <PostCategory type="secondary" className="mb-[0px]">
-                            Kiến thức
+                            {post.categories[0].name}
                         </PostCategory>
                         <PostTitle
                             limitLine={2}
                             className="text-lg font-semibold text-[#232323] "
+                            to={post.id}
                         >
-                            Hướng dẫn setup phòng cực chill dành cho người mới
-                            toàn tập
+                            {post.title}
                         </PostTitle>
                         <PostMeta
-                            time="Mar 23"
-                            authorName="Andiez Le"
+                            time={new Date(
+                                post.time.seconds * 1000
+                            ).toLocaleDateString("Vi-vi")}
+                            authorID={post.authorID}
                             className="text-gray6B text-sm font-semibold"
-                        ></PostMeta>
+                        />
                     </div>
                 </div>
             ))}
